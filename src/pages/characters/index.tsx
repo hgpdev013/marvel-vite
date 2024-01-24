@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ListBackground } from "../../components";
 import { Card } from "../../components/Card";
-import { GetCharacter } from "../../services/requests";
+import { GetCharacter } from "../../services";
 import { GET_LIMIT } from "../../utils/common-data";
 import * as Styles from "./styles";
 
@@ -53,8 +53,8 @@ export default function CharactersPage() {
         scrollableTarget="scrollableDiv"
       >
         <Styles.Container id="scrollableDiv">
-          {characters.map((character, index) => (
-            <Card key={index} data={character} />
+          {characters.map((character) => (
+            <Card key={character.id} data={character} />
           ))}
         </Styles.Container>
       </InfiniteScroll>

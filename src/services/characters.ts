@@ -2,7 +2,7 @@ import { setupAPIClient } from "./api";
 import {
   CommonParams,
   GetCharacterParams,
-  GetCharacterResponse,
+  GetResponse,
 } from "../types";
 
 const api = setupAPIClient();
@@ -14,7 +14,7 @@ export async function GetCharacter({
   limit,
   offset,
 }: CommonParams & GetCharacterParams) {
-  const { data } = await api.get<GetCharacterResponse>("/characters", {
+  const { data } = await api.get<GetResponse>("/characters", {
     params: {
       name,
       nameStartsWith,
@@ -28,7 +28,7 @@ export async function GetCharacter({
 }
 
 export async function GetCharacterById(characterId: number) {
-  const { data } = await api.get<GetCharacterResponse>(
+  const { data } = await api.get<GetResponse>(
     `/characters/${characterId}`
   );
 

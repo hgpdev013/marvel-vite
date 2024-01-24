@@ -22,6 +22,7 @@ type Subtopics = {
 
 type Results = {
   id: number;
+  fullName: string;
   name: string;
   description: string;
   modified: Date;
@@ -34,7 +35,7 @@ type Results = {
   urls: Url[];
 };
 
-type GetCharacterResponse = {
+type GetResponse = {
   data: {
     offset: number;
     limit: number;
@@ -45,4 +46,4 @@ type GetCharacterResponse = {
   };
 };
 
-export type { GetCharacterResponse };
+export type { GetResponse };
