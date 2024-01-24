@@ -1,10 +1,4 @@
-import {
-  PropsWithChildren,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
 interface LoginParams {
@@ -67,5 +61,3 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     </AuthContext.Provider>
   );
 };
-
-export const useAuth = () => useContext(AuthContext);

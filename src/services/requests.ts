@@ -1,9 +1,11 @@
-import { api } from "./api";
+import { useApi } from "../hooks";
 import {
   CommonParams,
   GetCharacterParams,
   GetCharacterResponse,
 } from "../types";
+
+const api = useApi();
 
 export async function GetCharacter({
   name,
@@ -26,11 +28,9 @@ export async function GetCharacter({
 }
 
 export async function GetCharacterById(characterId: number) {
-  const { data } = await api.get<GetCharacterResponse>("/characters", {
-    params: {
-      characterId,
-    },
-  });
+  const { data } = await api.get<GetCharacterResponse>(
+    `/characters/${characterId}`
+  );
 
   return data;
 }
