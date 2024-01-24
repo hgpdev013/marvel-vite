@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { ListBackground } from "../../components";
 import { Card } from "../../components/Card";
 import { GetCharacter } from "../../services";
 import { GET_LIMIT } from "../../utils/common-data";
@@ -43,7 +42,7 @@ export default function CharactersPage() {
   }, []);
 
   return (
-    <ListBackground>
+    <Styles.Container>
       <InfiniteScroll
         dataLength={characters.length}
         next={() => fetchCharacters(offset + GET_LIMIT)}
@@ -52,12 +51,12 @@ export default function CharactersPage() {
         loader={""}
         scrollableTarget="scrollableDiv"
       >
-        <Styles.Container id="scrollableDiv">
+        <Styles.Content id="scrollableDiv">
           {characters.map((character) => (
             <Card key={character.id} data={character} />
           ))}
-        </Styles.Container>
+        </Styles.Content>
       </InfiniteScroll>
-    </ListBackground>
+    </Styles.Container>
   );
 }

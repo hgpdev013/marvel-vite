@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { ListBackground } from "../../components";
 import { Card } from "../../components/Card";
+import { GetCreators } from "../../services";
 import { GET_LIMIT } from "../../utils/common-data";
 import * as Styles from "./styles";
-import { GetCreators } from "../../services";
 
 interface Creator {
   id: number;
@@ -43,7 +42,7 @@ export default function CreatorsPage() {
   }, []);
 
   return (
-    <ListBackground>
+    <Styles.Container>
       <InfiniteScroll
         dataLength={creators.length}
         next={() => fetchCreators(offset + GET_LIMIT)}
@@ -52,12 +51,12 @@ export default function CreatorsPage() {
         loader={""}
         scrollableTarget="scrollableDiv"
       >
-        <Styles.Container id="scrollableDiv">
+        <Styles.Content id="scrollableDiv">
           {creators.map((creator) => (
             <Card key={creator.id} data={creator} />
           ))}
-        </Styles.Container>
+        </Styles.Content>
       </InfiniteScroll>
-    </ListBackground>
+    </Styles.Container>
   );
 }

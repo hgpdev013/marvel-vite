@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { ListBackground } from "../../components";
 import { Card } from "../../components/Card";
+import { GetComics } from "../../services";
 import { GET_LIMIT } from "../../utils/common-data";
 import * as Styles from "./styles";
-import { GetComics } from "../../services";
 
 interface Comic {
   id: number;
@@ -43,7 +42,7 @@ export default function ComicsPage() {
   }, []);
 
   return (
-    <ListBackground>
+    <Styles.Container>
       <InfiniteScroll
         dataLength={comics.length}
         next={() => fetchComics(offset + GET_LIMIT)}
@@ -52,12 +51,12 @@ export default function ComicsPage() {
         loader={""}
         scrollableTarget="scrollableDiv"
       >
-        <Styles.Container id="scrollableDiv">
+        <Styles.Content id="scrollableDiv">
           {comics.map((comic) => (
             <Card key={comic.id} data={comic} />
           ))}
-        </Styles.Container>
+        </Styles.Content>
       </InfiniteScroll>
-    </ListBackground>
+    </Styles.Container>
   );
 }
