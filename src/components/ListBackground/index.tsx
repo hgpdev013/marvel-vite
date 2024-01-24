@@ -13,6 +13,7 @@ import {
   Snowflake,
   ShieldStar,
   Dna,
+  FlyingSaucer,
 } from "@phosphor-icons/react";
 
 import * as Styles from "./styles";
@@ -33,12 +34,13 @@ const icons = [
   Snowflake,
   ShieldStar,
   Dna,
+  FlyingSaucer,
 ];
 
 export const ListBackground = ({ children }: PropsWithChildren) => {
   return (
     <Styles.Container>
-      {children}
+      <Styles.Content>{children}</Styles.Content>
       {[0, 1].map((_) =>
         icons.map((value, index) => {
           const Icon = value;
