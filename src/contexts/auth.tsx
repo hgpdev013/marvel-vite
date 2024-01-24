@@ -39,13 +39,13 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   function handleLogout() {
     setPublicKey("");
     setPrivateKey("");
-    removeCookie("publicKey", { path: "/" });
-    removeCookie("privateKey", { path: "/" });
+    removeCookie("publicKey");
+    removeCookie("privateKey");
   }
 
   useEffect(() => {
-    setCookie("publicKey", publicKey, { path: "/" });
-    setCookie("privateKey", privateKey, { path: "/" });
+    setCookie("publicKey", publicKey);
+    setCookie("privateKey", privateKey);
   }, [publicKey, privateKey, setCookie]);
 
   useEffect(() => {
