@@ -12,6 +12,7 @@ import {
   Siren,
   Snowflake,
   ShieldStar,
+  Dna,
 } from "@phosphor-icons/react";
 
 import * as Styles from "./styles";
@@ -31,16 +32,23 @@ const icons = [
   Siren,
   Snowflake,
   ShieldStar,
+  Dna,
 ];
 
 export const ListBackground = ({ children }: PropsWithChildren) => {
   return (
-    <Styles.Container toRotateValue={Math.random()}>
-      {icons.map((value, index) => {
-        const Icon = value;
-        return <Icon key={index} weight="thin" />;
-      })}
+    <Styles.Container>
       {children}
+      {[0, 1].map((_) =>
+        icons.map((value, index) => {
+          const Icon = value;
+          return (
+            <Styles.IconContainer key={index}>
+              <Icon weight="light" />
+            </Styles.IconContainer>
+          );
+        })
+      )}
     </Styles.Container>
   );
 };
