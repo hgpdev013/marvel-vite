@@ -1,20 +1,20 @@
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
 import {
   Route,
   BrowserRouter,
   Routes as RoutesR,
   Navigate,
 } from "react-router-dom";
-import { useAuth } from "../contexts/auth";
 import HomePage from "../pages/home";
 import LoginPage from "../pages/login";
 import CreatorsPage from "../pages/creators";
 import ComicsPage from "../pages/comics";
 import CharactersPage from "../pages/characters";
+import { AuthContext } from "../contexts";
 
 export const Routes = () => {
   function verifyAuthentication(component: ReactElement) {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated } = useContext(AuthContext);
     //!!TODO - remove negation
     if (!isAuthenticated) return component;
     return <Navigate to="/login" />;

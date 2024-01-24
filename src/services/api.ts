@@ -1,9 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { useAuth } from "../contexts/auth";
 
-const BASE_URL = "https://gateway.marvel.com/";
+const BASE_URL = "https://gateway.marvel.com/v1/public";
 
-const { publicKey, privateKey, handleLogout } = useAuth();
+const { publicKey, handleLogout } = useAuth();
 
 export const api = axios.create({
   baseURL: BASE_URL,
