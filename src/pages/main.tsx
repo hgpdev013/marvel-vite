@@ -6,7 +6,7 @@ import { Routes } from "../router/router";
 import { GlobalStyle } from "../styles/global";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <CookiesProvider defaultSetOptions={{ path: "/" }}>
       <AuthProvider>
         <ThemeManagementProvider>
@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </ThemeManagementProvider>
       </AuthProvider>
     </CookiesProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
