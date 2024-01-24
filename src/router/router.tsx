@@ -5,9 +5,12 @@ import {
   Routes as RoutesR,
   Navigate,
 } from "react-router-dom";
+import { useAuth } from "../contexts/auth";
 import HomePage from "../pages/home";
 import LoginPage from "../pages/login";
-import { useAuth } from "../contexts/auth";
+import CreatorsPage from "../pages/creators";
+import ComicsPage from "../pages/comics";
+import CharactersPage from "../pages/characters";
 
 export const Routes = () => {
   function verifyAuthentication(component: ReactElement) {
@@ -22,6 +25,15 @@ export const Routes = () => {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={verifyAuthentication(<HomePage />)} />
+        <Route
+          path="/creators"
+          element={verifyAuthentication(<CreatorsPage />)}
+        />
+        <Route path="/comics" element={verifyAuthentication(<ComicsPage />)} />
+        <Route
+          path="/characters"
+          element={verifyAuthentication(<CharactersPage />)}
+        />
       </RoutesR>
     </BrowserRouter>
   );
