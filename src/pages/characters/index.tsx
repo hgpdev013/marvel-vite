@@ -1,5 +1,10 @@
 import * as Styles from "./styles";
+import { ListBackground } from "../../components";
 
 export default function CharactersPage() {
-  return <Styles.Container></Styles.Container>;
+  return (
+    <ListBackground>
+      <Styles.Container></Styles.Container>
+    </ListBackground>
+  );
 }
