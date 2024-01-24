@@ -19,11 +19,16 @@ export const Routes = () => {
     return <Navigate to="/login" />;
   }
 
+  function verifyIsLogged(component: ReactElement) {
+    if (!isAuthenticated) return component;
+    return <Navigate to="/home" />;
+  }
+
   return (
     <BrowserRouter>
       <RoutesR>
         <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={verifyIsLogged(<LoginPage />)} />
         <Route path="/home" element={verifyAuthentication(<HomePage />)} />
         <Route
           path="/creators"
