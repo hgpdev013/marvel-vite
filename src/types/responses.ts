@@ -23,11 +23,13 @@ type Subtopics = {
 type Results = {
   id: number;
   fullName: string;
+  title: string;
   name: string;
   description: string;
   modified: Date;
   resourceURI: string;
   thumbnail: Thumbnail;
+  characters: Subtopics;
   comics: Subtopics;
   series: Subtopics;
   stories: Subtopics;
