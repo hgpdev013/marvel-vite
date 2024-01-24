@@ -13,8 +13,8 @@ import CharactersPage from "../pages/characters";
 import { useAuth } from "../hooks";
 
 export const Routes = () => {
+  const { isAuthenticated } = useAuth();
   function verifyAuthentication(component: ReactElement) {
-    const { isAuthenticated } = useAuth();
     //!!TODO - remove negation
     if (!isAuthenticated) return component;
     return <Navigate to="/login" />;
