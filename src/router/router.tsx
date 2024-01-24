@@ -34,6 +34,7 @@ export const Routes = () => {
           path="/characters"
           element={verifyAuthentication(<CharactersPage />)}
         />
+        <Route path="*" element={<Navigate to="/home" />} />
       </RoutesR>
     </BrowserRouter>
   );
