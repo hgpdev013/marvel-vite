@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useAuth } from "../contexts/auth";
 
 const BASE_URL = "https://gateway.marvel.com/";
 
-const { publicKey, privateKey } = useAuth();
+const { publicKey, privateKey, handleLogout } = useAuth();
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -11,3 +11,15 @@ export const api = axios.create({
     apikey: publicKey,
   },
 });
+
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error: AxiosError) => {
+    if (error.status === 401 || error.status === 403) {
+      handleLogout();
+    }
+    return Promise.reject(error);
+  }
+);
