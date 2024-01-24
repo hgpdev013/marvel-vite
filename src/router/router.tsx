@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement } from "react";
 import {
   Route,
   BrowserRouter,
@@ -10,11 +10,11 @@ import LoginPage from "../pages/login";
 import CreatorsPage from "../pages/creators";
 import ComicsPage from "../pages/comics";
 import CharactersPage from "../pages/characters";
-import { AuthContext } from "../contexts";
+import { useAuth } from "../hooks";
 
 export const Routes = () => {
   function verifyAuthentication(component: ReactElement) {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated } = useAuth();
     //!!TODO - remove negation
     if (!isAuthenticated) return component;
     return <Navigate to="/login" />;
