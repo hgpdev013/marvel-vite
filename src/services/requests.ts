@@ -1,11 +1,11 @@
-import { useApi } from "../hooks";
+import { setupAPIClient } from "./api";
 import {
   CommonParams,
   GetCharacterParams,
   GetCharacterResponse,
 } from "../types";
 
-const api = useApi();
+const api = setupAPIClient();
 
 export async function GetCharacter({
   name,

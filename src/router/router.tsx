@@ -15,8 +15,7 @@ import { useAuth } from "../hooks";
 export const Routes = () => {
   const { isAuthenticated } = useAuth();
   function verifyAuthentication(component: ReactElement) {
-    //!!TODO - remove negation
-    if (!isAuthenticated) return component;
+    if (isAuthenticated) return component;
     return <Navigate to="/login" />;
   }
 
