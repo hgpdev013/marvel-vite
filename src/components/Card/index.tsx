@@ -7,6 +7,7 @@ interface CardProps {
     description: string;
     image: string;
   };
+  type: 'comic' | 'creator' | 'character';
 }
 
 export const Card = ({ data }: CardProps) => {

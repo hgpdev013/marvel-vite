@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Card } from "../../components/Card";
+import { List } from "../../components";
 import { GetCharacter } from "../../services";
 import { GET_LIMIT } from "../../utils/common-data";
-import * as Styles from "./styles";
 
 interface Character {
   id: number;
@@ -42,21 +40,11 @@ export default function CharactersPage() {
   }, []);
 
   return (
-    <Styles.Container>
-      <InfiniteScroll
-        dataLength={characters.length}
-        next={() => fetchCharacters(offset + GET_LIMIT)}
-        scrollThreshold={0.9}
-        hasMore={characters.length < characters[0]?.totalData}
-        loader={""}
-        scrollableTarget="scrollableDiv"
-      >
-        <Styles.Content id="scrollableDiv">
-          {characters.map((character) => (
-            <Card key={character.id} data={character} />
-          ))}
-        </Styles.Content>
-      </InfiniteScroll>
-    </Styles.Container>
+    <List
+      data={characters}
+      fetchData={fetchCharacters}
+      offset={offset}
+      type="character"
+    />
   );
 }
