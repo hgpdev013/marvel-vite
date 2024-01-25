@@ -1,7 +1,7 @@
-import * as Styles from "./styles";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Card } from "..";
 import { GET_LIMIT } from "../../utils/common-data";
+import * as Styles from "./styles";
 
 interface ListProps {
   data: {
@@ -18,7 +18,7 @@ interface ListProps {
 
 export const List = ({ data, type, fetchData, offset }: ListProps) => {
   return (
-    <Styles.Container>
+    <Styles.Container id="scrollableDiv">
       <InfiniteScroll
         dataLength={data.length}
         next={() => fetchData(offset + GET_LIMIT)}
@@ -27,7 +27,7 @@ export const List = ({ data, type, fetchData, offset }: ListProps) => {
         loader={""}
         scrollableTarget="scrollableDiv"
       >
-        <Styles.Content id="scrollableDiv">
+        <Styles.Content>
           {data.map((data) => (
             <Card key={data.id} data={data} type={type} />
           ))}
