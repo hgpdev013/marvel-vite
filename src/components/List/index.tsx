@@ -31,7 +31,7 @@ export const List = ({ data, type, fetchData, offset }: ListProps) => {
       <InfiniteScroll
         dataLength={data.length}
         next={() => fetchData(offset + GET_LIMIT)}
-        scrollThreshold={0.9}
+        scrollThreshold={0.8}
         hasMore={data.length < data[0]?.totalData}
         loader={""}
         scrollableTarget="scrollableDiv"

@@ -17,8 +17,9 @@ export const Container = styled.div`
   }
 
   &:hover {
-    box-shadow: 0 0 2rem ${({ theme }) => theme.secondary};
+    box-shadow: -1rem 0.5rem 2rem ${({ theme }) => theme.secondary};
     transform: scale(1.01);
+    transform: translate(10px, -7px);
 
     > div,
     h1 {
