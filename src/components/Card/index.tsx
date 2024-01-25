@@ -7,15 +7,17 @@ interface CardProps {
     description: string;
     image: string;
   };
-  type: 'comic' | 'creator' | 'character';
+  type: "comic" | "creator" | "character";
 }
 
 export const Card = ({ data }: CardProps) => {
   return (
     <Styles.Container>
       <img src={data.image} alt={data.name} />
-      <h1>{data.name}</h1>
-      <span>{data.description}</span>
+      <Styles.Content>
+        <Styles.Title>{data.name}</Styles.Title>
+        {/* {data.description && <span>{data.description}</span>} */}
+      </Styles.Content>
     </Styles.Container>
   );
 };

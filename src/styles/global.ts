@@ -6,9 +6,10 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif; 
-    background: ${({ theme }) => theme.background};
   }
+
   body {
+    background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
   }
 `;
