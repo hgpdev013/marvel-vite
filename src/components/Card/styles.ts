@@ -51,6 +51,5 @@ export const Title = styled.h1`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  word-break: break-all;
   -webkit-line-clamp: 1;
 `;
