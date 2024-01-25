@@ -7,7 +7,6 @@ export const Container = styled.div`
   position: relative;
   max-width: 15rem;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 
   > img {
     width: 15rem;
@@ -18,7 +17,9 @@ export const Container = styled.div`
 
   &:hover {
     box-shadow: 0 0 2rem ${({ theme }) => theme.secondary};
+    transition: all 0.3s ease-in-out;
     transform: scale(1.01);
+    transition: all 0.3s ease-in-out;
 
     > div,
     h1 {
