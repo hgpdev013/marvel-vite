@@ -1,3 +1,5 @@
+import { ArrowCircleUp } from "@phosphor-icons/react";
+import { useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Card } from "..";
 import { GET_LIMIT } from "../../utils/common-data";
@@ -17,8 +19,15 @@ interface ListProps {
 }
 
 export const List = ({ data, type, fetchData, offset }: ListProps) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  function scrollToTop() {
+    if (!containerRef.current) return;
+    containerRef.current.scrollTop = 0;
+  }
+
   return (
-    <Styles.Container id="scrollableDiv">
+    <Styles.Container ref={containerRef} id="scrollableDiv">
       <InfiniteScroll
         dataLength={data.length}
         next={() => fetchData(offset + GET_LIMIT)}
@@ -33,6 +42,9 @@ export const List = ({ data, type, fetchData, offset }: ListProps) => {
           ))}
         </Styles.Content>
       </InfiniteScroll>
+      <Styles.TopButton onClick={() => scrollToTop()}>
+        <ArrowCircleUp weight="duotone" />
+      </Styles.TopButton>
     </Styles.Container>
   );
 };
