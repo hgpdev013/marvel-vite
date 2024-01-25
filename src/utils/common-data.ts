@@ -1,1 +1,1 @@
-export const GET_LIMIT = 20;
+export const GET_LIMIT = 25;
