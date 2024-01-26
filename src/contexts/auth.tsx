@@ -1,7 +1,7 @@
 import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
-interface LoginParams {
+export interface LoginParams {
   publicKey: string;
   privateKey: string;
 }
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     setCookie("publicKey", publicKey);
     setCookie("privateKey", privateKey);
-  }, [publicKey, privateKey, setCookie]);
+  }, [publicKey, privateKey]);
 
   useEffect(() => {
     if (cookies.publicKey || cookies.privateKey) return;

@@ -2,7 +2,7 @@ import { ArrowCircleUp } from "@phosphor-icons/react";
 import { useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Card } from "..";
-import { GET_LIMIT, PAGE_TYPES } from "../../utils/common-data";
+import { GET_LIMIT, PAGE_TYPES_KEY } from "../../utils/common-data";
 import * as Styles from "./styles";
 
 interface ListProps {
@@ -13,7 +13,7 @@ interface ListProps {
     image: string;
     totalData: number;
   }[];
-  type: keyof typeof PAGE_TYPES;
+  type: PAGE_TYPES_KEY;
   fetchData: (offset: number) => void;
   offset: number;
 }

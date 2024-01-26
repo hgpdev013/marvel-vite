@@ -30,7 +30,7 @@ export const setupAPIClient = () => {
       return response;
     },
     (error: AxiosError) => {
-      if (error.status === 401 || error.status === 403) {
+      if (error?.response?.status === 401 || error?.response?.status === 403) {
         cookies.remove("publicKey");
         cookies.remove("privateKey");
       }

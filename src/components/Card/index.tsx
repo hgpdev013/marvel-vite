@@ -1,6 +1,6 @@
-import * as Styles from "./styles";
-import { PAGE_TYPES } from "../../utils/common-data";
 import { useNavigate } from "react-router-dom";
+import { PAGE_TYPES_KEY } from "../../utils/common-data";
+import * as Styles from "./styles";
 
 interface CardProps {
   data: {
@@ -9,7 +9,7 @@ interface CardProps {
     description: string;
     image: string;
   };
-  type: keyof typeof PAGE_TYPES;
+  type: PAGE_TYPES_KEY;
 }
 
 export const Card = ({ data, type }: CardProps) => {
