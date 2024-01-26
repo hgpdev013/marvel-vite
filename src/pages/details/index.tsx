@@ -3,16 +3,30 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SubDetails } from "../../components";
 import { getDetails, getSubDetails } from "../../services";
 import { Results } from "../../types";
-import { PAGE_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
+import {
+  NAME_TYPES,
+  PAGE_TYPES,
+  PAGE_TYPES_KEY,
+} from "../../utils/common-data";
 import * as Styles from "./styles";
 
 const SUB_LIMIT = 8;
+
+interface FormattedDataProps {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+}
 
 export default function DetailsPage() {
   const { id, type } = useParams();
   const navigate = useNavigate();
 
   const [data, setData] = useState<Results>({} as Results);
+  const [formattedData, setFormattedData] = useState<FormattedDataProps>(
+    {} as FormattedDataProps
+  );
 
   const [nestedLists, setNestedLists] = useState<{
     [key in PAGE_TYPES_KEY]: Results[];
@@ -28,6 +42,7 @@ export default function DetailsPage() {
 
   async function fetchDataByIdAndType(typeToFetch: PAGE_TYPES_KEY, id: number) {
     setData({} as Results);
+    setFormattedData({} as FormattedDataProps);
     setNestedLists({} as { [key in PAGE_TYPES_KEY]: Results[] });
     setOffset({
       comics: 0,
@@ -38,6 +53,14 @@ export default function DetailsPage() {
       const { data } = await getDetails(typeToFetch, id);
 
       setData(data.results[0]);
+      setFormattedData({
+        id: data.results[0].id,
+        name: data.results[0][NAME_TYPES[typeToFetch]],
+        description: data.results[0].description,
+        image: data.results[0].thumbnail
+          ? `${data.results[0].thumbnail.path}.${data.results[0].thumbnail.extension}`
+          : "",
+      });
     } catch (error) {
       navigate(`/${typeToFetch}`);
     }
@@ -94,7 +117,7 @@ export default function DetailsPage() {
     <Styles.Container>
       <div>
         <button onClick={() => navigate(`/${type}`)}></button>
-        <h1>{data.name}</h1>
+        <h1>{formattedData.name}</h1>
       </div>
       {Object.keys(nestedLists).map((key) => {
         return (

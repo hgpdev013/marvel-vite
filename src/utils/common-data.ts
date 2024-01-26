@@ -6,4 +6,10 @@ export const PAGE_TYPES = {
   creators: "creators",
 } as const;
 
+export const NAME_TYPES = {
+  comics: "title",
+  characters: "name",
+  creators: "fullName",
+} as const;
+
 export type PAGE_TYPES_KEY = keyof typeof PAGE_TYPES;

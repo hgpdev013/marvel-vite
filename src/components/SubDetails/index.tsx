@@ -1,18 +1,12 @@
 import { Card } from "..";
 import { Results } from "../../types";
-import { PAGE_TYPES_KEY } from "../../utils/common-data";
+import { NAME_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
 import * as Styles from "./styles";
 
 interface SubDetailsProps {
   subType: PAGE_TYPES_KEY;
   data: Results[];
 }
-
-const NAME_TYPES = {
-  comics: "title",
-  characters: "name",
-  creators: "fullName",
-} as const;
 
 export const SubDetails = ({ data, subType }: SubDetailsProps) => {
   const formattedData = data.map((value) => ({
