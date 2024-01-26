@@ -20,7 +20,7 @@ type Subtopics = {
   returned: number;
 };
 
-type Results = {
+export type Results = {
   id: number;
   fullName: string;
   title: string;
@@ -30,6 +30,7 @@ type Results = {
   resourceURI: string;
   thumbnail: Thumbnail;
   characters: Subtopics;
+  creators: Subtopics;
   comics: Subtopics;
   series: Subtopics;
   stories: Subtopics;

@@ -16,7 +16,7 @@ export const Card = ({ data, type }: CardProps) => {
   const navigate = useNavigate();
   return (
     <Styles.Container onClick={() => navigate(`/${type}/${data.id}`)}>
-      <img src={data.image} alt={data.name} />
+      <img src={data.image} alt={data.name} loading="lazy" />
       <Styles.Content>
         <Styles.Title>{data.name}</Styles.Title>
         {/* {data.description && <span>{data.description}</span>} */}

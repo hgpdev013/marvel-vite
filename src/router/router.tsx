@@ -42,7 +42,11 @@ export const Routes = () => {
           element={verifyAuthentication(<CharactersPage />)}
         />
         <Route
-          path="/:type/:id"
+          path="/:type/:id/"
+          element={verifyAuthentication(<DetailsPage />)}
+        />
+        <Route
+          path="/:type/:id/:subType"
           element={verifyAuthentication(<DetailsPage />)}
         />
         <Route path="*" element={<Navigate to="/home" />} />
