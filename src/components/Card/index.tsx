@@ -1,4 +1,6 @@
 import * as Styles from "./styles";
+import { PAGE_TYPES } from "../../utils/common-data";
+import { useNavigate } from "react-router-dom";
 
 interface CardProps {
   data: {
@@ -7,12 +9,13 @@ interface CardProps {
     description: string;
     image: string;
   };
-  type: "comic" | "creator" | "character";
+  type: keyof typeof PAGE_TYPES;
 }
 
-export const Card = ({ data }: CardProps) => {
+export const Card = ({ data, type }: CardProps) => {
+  const navigate = useNavigate();
   return (
-    <Styles.Container>
+    <Styles.Container onClick={() => navigate(`/${type}/${data.id}`)}>
       <img src={data.image} alt={data.name} />
       <Styles.Content>
         <Styles.Title>{data.name}</Styles.Title>

@@ -44,7 +44,7 @@ export default function CharactersPage() {
       data={characters}
       fetchData={fetchCharacters}
       offset={offset}
-      type="character"
+      type="characters"
     />
   );
 }

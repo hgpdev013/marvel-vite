@@ -40,6 +40,6 @@ export default function ComicsPage() {
   }, []);
 
   return (
-    <List data={comics} fetchData={fetchComics} offset={offset} type="comic" />
+    <List data={comics} fetchData={fetchComics} offset={offset} type="comics" />
   );
 }

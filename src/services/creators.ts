@@ -2,6 +2,7 @@ import { CommonParams, GetResponse } from "../types";
 import { setupAPIClient } from "./api";
 
 const api = setupAPIClient();
+
 export async function GetCreators({
   limit,
   offset,

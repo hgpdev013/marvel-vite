@@ -44,7 +44,7 @@ export default function CreatorsPage() {
       data={creators}
       fetchData={fetchCreators}
       offset={offset}
-      type="creator"
+      type="creators"
     />
   );
 }

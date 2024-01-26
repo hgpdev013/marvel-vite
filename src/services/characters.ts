@@ -1,9 +1,5 @@
 import { setupAPIClient } from "./api";
-import {
-  CommonParams,
-  GetCharacterParams,
-  GetResponse,
-} from "../types";
+import { CommonParams, GetCharacterParams, GetResponse } from "../types";
 
 const api = setupAPIClient();
 
@@ -23,14 +19,6 @@ export async function GetCharacter({
       offset,
     },
   });
-
-  return data;
-}
-
-export async function GetCharacterById(characterId: number) {
-  const { data } = await api.get<GetResponse>(
-    `/characters/${characterId}`
-  );
 
   return data;
 }

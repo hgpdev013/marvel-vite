@@ -5,15 +5,17 @@ import {
   Routes as RoutesR,
   Navigate,
 } from "react-router-dom";
+import { useAuth } from "../hooks";
 import HomePage from "../pages/home";
 import LoginPage from "../pages/login";
 import CreatorsPage from "../pages/creators";
 import ComicsPage from "../pages/comics";
 import CharactersPage from "../pages/characters";
-import { useAuth } from "../hooks";
+import DetailsPage from "../pages/details";
 
 export const Routes = () => {
   const { isAuthenticated } = useAuth();
+
   function verifyAuthentication(component: ReactElement) {
     if (isAuthenticated) return component;
     return <Navigate to="/login" />;
@@ -38,6 +40,10 @@ export const Routes = () => {
         <Route
           path="/characters"
           element={verifyAuthentication(<CharactersPage />)}
+        />
+        <Route
+          path="/:type/:id"
+          element={verifyAuthentication(<DetailsPage />)}
         />
         <Route path="*" element={<Navigate to="/home" />} />
       </RoutesR>
