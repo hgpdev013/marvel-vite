@@ -116,7 +116,7 @@ export default function DetailsPage() {
   return (
     <Styles.Container>
       <div>
-        <button onClick={() => navigate(`/${type}`)}></button>
+        <button onClick={() => navigate(-1)}></button>
         <h1>{formattedData.name}</h1>
       </div>
       {Object.keys(nestedLists).map((key) => {
