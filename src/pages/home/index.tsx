@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { HomeCarousel } from "../../components";
 import { getCommonData } from "../../services";
 import { Results } from "../../types";
 import { PAGE_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
@@ -9,20 +10,35 @@ export default function HomePage() {
     [key in PAGE_TYPES_KEY]: Results[];
   }>({} as { [key in PAGE_TYPES_KEY]: Results[] });
 
+  const [isLoading, setIsLoading] = useState<{
+    [key in PAGE_TYPES_KEY]: boolean;
+  }>({
+    characters: true,
+    comics: true,
+    creators: true,
+    events: true,
+    series: true,
+    stories: true,
+  });
+
   const fetchRandomData = useCallback(
     async (type: PAGE_TYPES_KEY) => {
+      setIsLoading((prev) => ({ ...prev, [type]: true }));
+
       const { data } = await getCommonData({
         limit: 1,
         type,
         offset: Math.floor(Math.random() * 100),
       });
 
-      setCarouselData((prev) => ({
-        ...prev,
+      setCarouselData((prevData) => ({
+        ...prevData,
         [type]: data.results,
       }));
+
+      setIsLoading((prev) => ({ ...prev, [type]: false }));
     },
-    [setCarouselData]
+    [setCarouselData, setIsLoading]
   );
 
   useEffect(() => {
@@ -31,11 +47,9 @@ export default function HomePage() {
     });
   }, [fetchRandomData]);
 
-  console.log(carouselData);
-
   return (
     <Styles.Container>
-      <Styles.Title>Hello World!</Styles.Title>
+      <HomeCarousel data={carouselData} isLoading={isLoading} />
     </Styles.Container>
   );
 }
