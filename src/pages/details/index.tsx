@@ -5,9 +5,9 @@ import { getDetails, getSubDetails } from "../../services";
 import { Results } from "../../types";
 import {
   FormattedDataProps,
-  NAME_TYPES,
   PAGE_TYPES,
   PAGE_TYPES_KEY,
+  formatData,
 } from "../../utils/common-data";
 import * as Styles from "./styles";
 
@@ -17,7 +17,7 @@ export default function DetailsPage() {
   const { id, type } = useParams();
   const navigate = useNavigate();
 
-  const [data, setData] = useState<Results>({} as Results);
+  const [fetchedData, setFetchedData] = useState<Results>({} as Results);
   const [formattedData, setFormattedData] = useState<FormattedDataProps>(
     {} as FormattedDataProps
   );
@@ -38,7 +38,7 @@ export default function DetailsPage() {
   } as { [key in PAGE_TYPES_KEY]: number });
 
   async function fetchDataByIdAndType(typeToFetch: PAGE_TYPES_KEY, id: number) {
-    setData({} as Results);
+    setFetchedData({} as Results);
     setFormattedData({} as FormattedDataProps);
     setNestedLists({} as { [key in PAGE_TYPES_KEY]: Results[] });
     setOffset({
@@ -52,16 +52,15 @@ export default function DetailsPage() {
     try {
       const { data } = await getDetails(typeToFetch, id);
 
-      setData(data.results[0]);
-      setFormattedData({
-        id: data.results[0].id,
-        name: data.results[0][NAME_TYPES[typeToFetch]] || "Unknown",
-        description: data.results[0].description || "Unknown description",
-        image: data.results[0].thumbnail
-          ? `${data.results[0].thumbnail.path}.${data.results[0].thumbnail.extension}`
-          : "",
-        totalData: data.total,
-      });
+      setFetchedData(data.results[0]);
+
+      const preFormattedData = formatData(
+        data.results[0],
+        typeToFetch,
+        data.total
+      );
+
+      setFormattedData(preFormattedData);
     } catch (error) {
       navigate(`/${typeToFetch}`);
     }
@@ -97,14 +96,14 @@ export default function DetailsPage() {
   }, [id, type]);
 
   useEffect(() => {
-    if (!id || !type || !data) return;
-    Object.keys(data).forEach(async (key) => {
+    if (!id || !type || !fetchedData) return;
+    Object.keys(fetchedData).forEach(async (key) => {
       if (
         key !== PAGE_TYPES[key as PAGE_TYPES_KEY] ||
-        data[key as PAGE_TYPES_KEY]?.items.length === 0
+        fetchedData[key as PAGE_TYPES_KEY]?.items.length === 0
       )
         return;
-      if (data[key as PAGE_TYPES_KEY]?.items.length > 0) {
+      if (fetchedData[key as PAGE_TYPES_KEY]?.items.length > 0) {
         fetchSubTypeData(
           type as PAGE_TYPES_KEY,
           Number(id),
@@ -112,7 +111,7 @@ export default function DetailsPage() {
         );
       }
     });
-  }, [data]);
+  }, [fetchedData]);
 
   return (
     <Styles.Container>

@@ -1,3 +1,5 @@
+import { Results } from "../types";
+
 export const GET_LIMIT = 25;
 
 export const PAGE_TYPES = {
@@ -27,3 +29,19 @@ export interface FormattedDataProps {
   image: string;
   totalData: number;
 }
+
+export const formatData = (
+  data: Results,
+  type: PAGE_TYPES_KEY,
+  total?: number
+): FormattedDataProps => {
+  return {
+    id: data.id,
+    name: data[NAME_TYPES[type]] || "Unknown",
+    description: data.description || "Unknown description",
+    image: data.thumbnail
+      ? `${data.thumbnail.path}.${data.thumbnail.extension}`
+      : "https://fakeimg.pl/250x250?text=Unknown",
+    totalData: total || 0,
+  };
+};

@@ -5,8 +5,8 @@ import { getCommonData } from "../../services";
 import {
   FormattedDataProps,
   GET_LIMIT,
-  NAME_TYPES,
   PAGE_TYPES_KEY,
+  formatData,
 } from "../../utils/common-data";
 
 export default function ListsPage() {
@@ -24,15 +24,9 @@ export default function ListsPage() {
           type: type as PAGE_TYPES_KEY,
         });
 
-        const dataFormatted = data.results.map((value) => {
-          return {
-            id: value.id,
-            name: value[NAME_TYPES[type as PAGE_TYPES_KEY]],
-            description: value.description || "No description",
-            image: `${value.thumbnail.path}.${value.thumbnail.extension}`,
-            totalData: data.total,
-          };
-        });
+        const dataFormatted = data.results.map((value) =>
+          formatData(value, type as PAGE_TYPES_KEY, data.total)
+        );
 
         setData((prev) => [...prev, ...dataFormatted]);
         setOffset(offset);

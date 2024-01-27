@@ -1,6 +1,9 @@
 import { Card } from "..";
 import { Results } from "../../types";
-import { NAME_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
+import {
+  PAGE_TYPES_KEY,
+  formatData
+} from "../../utils/common-data";
 import * as Styles from "./styles";
 
 interface SubDetailsProps {
@@ -9,14 +12,7 @@ interface SubDetailsProps {
 }
 
 export const SubDetails = ({ data, subType }: SubDetailsProps) => {
-  const formattedData = data.map((value) => ({
-    id: value.id,
-    name: value[NAME_TYPES[subType]] || "Unknown",
-    description: value.description || "Unknown description",
-    image: value.thumbnail
-      ? `${value.thumbnail.path}.${value.thumbnail.extension}`
-      : "",
-  }));
+  const formattedData = data.map((value) => formatData(value, subType));
 
   return (
     <Styles.Container>
@@ -24,7 +20,11 @@ export const SubDetails = ({ data, subType }: SubDetailsProps) => {
       <Styles.Content>
         {formattedData?.map(({ name, id, description, image }) => {
           return (
-            <Card data={{ name, id, description, image }} type={subType} />
+            <Card
+              key={id}
+              data={{ name, id, description, image }}
+              type={subType}
+            />
           );
         })}
       </Styles.Content>
