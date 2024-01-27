@@ -1,17 +1,15 @@
 import { ReactElement } from "react";
 import {
-  Route,
   BrowserRouter,
-  Routes as RoutesR,
   Navigate,
+  Route,
+  Routes as RoutesR,
 } from "react-router-dom";
 import { useAuth } from "../hooks";
-import HomePage from "../pages/home";
-import LoginPage from "../pages/login";
-import CreatorsPage from "../pages/creators";
-import ComicsPage from "../pages/comics";
-import CharactersPage from "../pages/characters";
 import DetailsPage from "../pages/details";
+import HomePage from "../pages/home";
+import ListsPage from "../pages/lists";
+import LoginPage from "../pages/login";
 
 export const Routes = () => {
   const { isAuthenticated } = useAuth();
@@ -32,15 +30,7 @@ export const Routes = () => {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/login" element={verifyIsLogged(<LoginPage />)} />
         <Route path="/home" element={verifyAuthentication(<HomePage />)} />
-        <Route
-          path="/creators"
-          element={verifyAuthentication(<CreatorsPage />)}
-        />
-        <Route path="/comics" element={verifyAuthentication(<ComicsPage />)} />
-        <Route
-          path="/characters"
-          element={verifyAuthentication(<CharactersPage />)}
-        />
+        <Route path="/:type" element={verifyAuthentication(<ListsPage />)} />
         <Route
           path="/:type/:id/"
           element={verifyAuthentication(<DetailsPage />)}

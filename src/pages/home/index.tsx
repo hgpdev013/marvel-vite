@@ -1,10 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import { getHomeData } from "../../services";
+import { getCommonData } from "../../services";
 import { Results } from "../../types";
-import { PAGE_TYPES_KEY } from "../../utils/common-data";
+import { PAGE_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
 import * as Styles from "./styles";
-
-const types = ["characters", "comics", "creators"] as PAGE_TYPES_KEY[];
 
 export default function HomePage() {
   const [carouselData, setCarouselData] = useState<{
@@ -13,7 +11,7 @@ export default function HomePage() {
 
   const fetchRandomData = useCallback(
     async (type: PAGE_TYPES_KEY) => {
-      const { data } = await getHomeData({
+      const { data } = await getCommonData({
         limit: 1,
         type,
         offset: Math.floor(Math.random() * 100),
@@ -23,17 +21,17 @@ export default function HomePage() {
         ...prev,
         [type]: data.results,
       }));
-
-      console.log(carouselData);
     },
-    [types]
+    [setCarouselData]
   );
 
   useEffect(() => {
-    types.forEach((type) => {
-      fetchRandomData(type);
+    Object.keys(PAGE_TYPES).forEach((key) => {
+      fetchRandomData(key as PAGE_TYPES_KEY);
     });
-  }, [fetchRandomData, types]);
+  }, [fetchRandomData]);
+
+  console.log(carouselData);
 
   return (
     <Styles.Container>

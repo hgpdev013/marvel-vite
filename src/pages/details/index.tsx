@@ -48,6 +48,9 @@ export default function DetailsPage() {
       comics: 0,
       characters: 0,
       creators: 0,
+      events: 0,
+      stories: 0,
+      series: 0,
     });
     try {
       const { data } = await getDetails(typeToFetch, id);

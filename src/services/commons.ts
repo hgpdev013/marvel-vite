@@ -4,7 +4,7 @@ import { PAGE_TYPES_KEY } from "../utils/common-data";
 
 const api = setupAPIClient();
 
-export async function getHomeData({
+export async function getCommonData({
   limit,
   offset,
   type,

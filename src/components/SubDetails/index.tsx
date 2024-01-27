@@ -20,7 +20,7 @@ export const SubDetails = ({ data, subType }: SubDetailsProps) => {
 
   return (
     <Styles.Container>
-      {subType}
+      <h1>{subType}</h1>
       {formattedData?.map(({ name, id, description, image }) => {
         return <Card data={{ name, id, description, image }} type={subType} />;
       })}
