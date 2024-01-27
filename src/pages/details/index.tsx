@@ -61,8 +61,8 @@ export default function DetailsPage() {
       setData(data.results[0]);
       setFormattedData({
         id: data.results[0].id,
-        name: data.results[0][NAME_TYPES[typeToFetch]],
-        description: data.results[0].description,
+        name: data.results[0][NAME_TYPES[typeToFetch]] || "Unknown",
+        description: data.results[0].description || "Unknown description",
         image: data.results[0].thumbnail
           ? `${data.results[0].thumbnail.path}.${data.results[0].thumbnail.extension}`
           : "",

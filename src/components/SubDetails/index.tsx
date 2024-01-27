@@ -11,8 +11,8 @@ interface SubDetailsProps {
 export const SubDetails = ({ data, subType }: SubDetailsProps) => {
   const formattedData = data.map((value) => ({
     id: value.id,
-    name: value[NAME_TYPES[subType]],
-    description: value.description,
+    name: value[NAME_TYPES[subType]] || "Unknown",
+    description: value.description || "Unknown description",
     image: value.thumbnail
       ? `${value.thumbnail.path}.${value.thumbnail.extension}`
       : "",
@@ -21,9 +21,13 @@ export const SubDetails = ({ data, subType }: SubDetailsProps) => {
   return (
     <Styles.Container>
       <h1>{subType}</h1>
-      {formattedData?.map(({ name, id, description, image }) => {
-        return <Card data={{ name, id, description, image }} type={subType} />;
-      })}
+      <Styles.Content>
+        {formattedData?.map(({ name, id, description, image }) => {
+          return (
+            <Card data={{ name, id, description, image }} type={subType} />
+          );
+        })}
+      </Styles.Content>
     </Styles.Container>
   );
 };
