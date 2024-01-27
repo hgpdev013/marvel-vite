@@ -38,8 +38,12 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   }
 
   useEffect(() => {
-    setCookie("publicKey", publicKey);
-    setCookie("privateKey", privateKey);
+    setCookie("publicKey", publicKey, {
+      maxAge: 60 * 60 * 24, // 1 day
+    });
+    setCookie("privateKey", privateKey, {
+      maxAge: 60 * 60 * 24, // 1 day
+    });
   }, [publicKey, privateKey]);
 
   useEffect(() => {
