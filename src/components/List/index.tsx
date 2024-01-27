@@ -25,7 +25,7 @@ export const List = ({ data, type, fetchData, offset }: ListProps) => {
   }
 
   return (
-    <Styles.Container ref={containerRef} id="scrollableDiv">
+    <Styles.Container ref={containerRef}>
       <InfiniteScroll
         dataLength={data.length}
         next={() => fetchData(offset + GET_LIMIT)}

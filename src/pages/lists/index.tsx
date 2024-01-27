@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import { List } from "../../components";
+import { Layout, List } from "../../components";
 import { getCommonData } from "../../services";
 import {
   FormattedDataProps,
@@ -31,6 +32,7 @@ export default function ListsPage() {
         setData((prev) => [...prev, ...dataFormatted]);
         setOffset(offset);
       } catch (error) {
+        toast.error("The type you tried to list doesn't exists.");
         navigate("/home");
       }
     },
@@ -42,11 +44,13 @@ export default function ListsPage() {
   }, []);
 
   return (
-    <List
-      data={data}
-      fetchData={fetchDataPerType}
-      offset={offset}
-      type={type as PAGE_TYPES_KEY}
-    />
+    <Layout>
+      <List
+        data={data}
+        fetchData={fetchDataPerType}
+        offset={offset}
+        type={type as PAGE_TYPES_KEY}
+      />
+    </Layout>
   );
 }

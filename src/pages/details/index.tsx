@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { SubDetails } from "../../components";
 import { getDetails, getSubDetails } from "../../services";
@@ -62,6 +63,7 @@ export default function DetailsPage() {
 
       setFormattedData(preFormattedData);
     } catch (error) {
+      toast.error("The item you tried to access does not exist.");
       navigate(`/${typeToFetch}`);
     }
   }

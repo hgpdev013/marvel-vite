@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { Layout } from "../../components";
+import { LoginParams } from "../../contexts";
 import { useAuth } from "../../hooks";
 import * as Styles from "./styles";
-import { LoginParams } from "../../contexts";
-import { Layout } from "../../styles/global";
 
 export default function LoginPage() {
   const { handleLogin } = useAuth();
@@ -17,8 +18,12 @@ export default function LoginPage() {
   }
 
   function handleSubmit() {
-    if (!loginKeys.publicKey || !loginKeys.privateKey) return;
+    if (!loginKeys.publicKey || !loginKeys.privateKey) {
+      toast.error("You need to fill both fields to login.");
+      return;
+    }
     handleLogin(loginKeys);
+    toast.success("You are logged in!");
   }
 
   return (

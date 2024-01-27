@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { HomeCarousel } from "../../components";
+import { HomeCarousel, Layout } from "../../components";
 import { getCommonData } from "../../services";
 import { Results } from "../../types";
 import { PAGE_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
 import * as Styles from "./styles";
-import { Layout } from "../../styles/global";
 
 export default function HomePage() {
   const [carouselData, setCarouselData] = useState<{
