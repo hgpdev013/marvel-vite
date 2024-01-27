@@ -38,7 +38,7 @@ export default function ListsPage() {
     },
     [offset, setData]
   );
-
+  
   useEffect(() => {
     fetchDataPerType(0);
   }, []);

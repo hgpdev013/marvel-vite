@@ -1,4 +1,6 @@
 import { ReactElement } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   BrowserRouter,
   Navigate,
@@ -26,6 +28,7 @@ export const Routes = () => {
 
   return (
     <BrowserRouter>
+      <ToastContainer position="top-right" />
       <RoutesR>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/login" element={verifyIsLogged(<LoginPage />)} />
