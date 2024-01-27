@@ -3,6 +3,14 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin: 5rem;
 
+  .slick-prev,
+  .slick-next {
+    &::before,
+    &::after {
+      color: ${({ theme }) => theme.text};
+    }
+  }
+
   ul {
     text-decoration: none;
     list-style: none;
