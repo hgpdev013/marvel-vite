@@ -2,20 +2,17 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { List } from "../../components";
 import { getCommonData } from "../../services";
-import { GET_LIMIT, NAME_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
-
-interface Comic {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-  totalData: number;
-}
+import {
+  FormattedDataProps,
+  GET_LIMIT,
+  NAME_TYPES,
+  PAGE_TYPES_KEY,
+} from "../../utils/common-data";
 
 export default function ListsPage() {
   const { type } = useParams();
   const [offset, setOffset] = useState(0);
-  const [data, setData] = useState<Comic[]>([]);
+  const [data, setData] = useState<FormattedDataProps[]>([]);
 
   const fetchDataPerType = useCallback(
     async (offset: number) => {

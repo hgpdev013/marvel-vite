@@ -2,17 +2,15 @@ import { ArrowCircleUp } from "@phosphor-icons/react";
 import { useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Card } from "..";
-import { GET_LIMIT, PAGE_TYPES_KEY } from "../../utils/common-data";
+import {
+  FormattedDataProps,
+  GET_LIMIT,
+  PAGE_TYPES_KEY,
+} from "../../utils/common-data";
 import * as Styles from "./styles";
 
 interface ListProps {
-  data: {
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-    totalData: number;
-  }[];
+  data: FormattedDataProps[];
   type: PAGE_TYPES_KEY;
   fetchData: (offset: number) => void;
   offset: number;

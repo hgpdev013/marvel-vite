@@ -4,6 +4,7 @@ import { SubDetails } from "../../components";
 import { getDetails, getSubDetails } from "../../services";
 import { Results } from "../../types";
 import {
+  FormattedDataProps,
   NAME_TYPES,
   PAGE_TYPES,
   PAGE_TYPES_KEY,
@@ -11,13 +12,6 @@ import {
 import * as Styles from "./styles";
 
 const SUB_LIMIT = 8;
-
-interface FormattedDataProps {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-}
 
 export default function DetailsPage() {
   const { id, type } = useParams();
@@ -66,6 +60,7 @@ export default function DetailsPage() {
         image: data.results[0].thumbnail
           ? `${data.results[0].thumbnail.path}.${data.results[0].thumbnail.extension}`
           : "",
+        totalData: data.total,
       });
     } catch (error) {
       navigate(`/${typeToFetch}`);

@@ -19,3 +19,11 @@ export const NAME_TYPES = {
 } as const;
 
 export type PAGE_TYPES_KEY = keyof typeof PAGE_TYPES;
+
+export interface FormattedDataProps {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  totalData: number;
+}
