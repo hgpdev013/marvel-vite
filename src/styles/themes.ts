@@ -12,6 +12,13 @@ export const themes = {
       shadow: "0 0.3rem 1rem rgba(0, 0, 0, 0.2)",
       inputBackground: "#ccc",
     },
+
+    carousel: {
+      navigation: "#FDD835",
+      selected: "#EA1022",
+      text: "#000",
+      background: "#FDD835",
+    },
   },
   dark: {
     background: "#221F1F",
@@ -24,6 +31,12 @@ export const themes = {
       text: "#000",
       shadow: "0 0.3rem 1rem rgba(255, 255, 255, 0.2)",
       inputBackground: "#fff",
+    },
+    carousel: {
+      navigation: "#FDD835",
+      selected: "#EA1022",
+      text: "#000",
+      background: "#FDD835",
     },
   },
 };

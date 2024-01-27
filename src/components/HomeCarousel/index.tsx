@@ -21,58 +21,68 @@ export const HomeCarousel = ({ data, isLoading }: HomeCarouselProps) => {
     slidesToScroll: 1,
     initialSlide: 0,
   };
+
   return (
     <Styles.Container>
       <Slider {...settings}>
-        {Object.keys(data).map((key) => {
-          if (
-            !isLoading[key as PAGE_TYPES_KEY] &&
-            data[key as PAGE_TYPES_KEY].length > 0
-          ) {
-            const formattedData = formatData(
-              data[key as PAGE_TYPES_KEY][0],
-              key as PAGE_TYPES_KEY
-            );
-            return (
-              <Styles.SlideContainer key={key + formattedData.id}>
-                <Styles.SlideContent>
-                  <Styles.Image src={formattedData.image} />
-                  <Styles.SlideSubContent>
-                    <Styles.Group>
-                      <Styles.Title>{formattedData.name}</Styles.Title>
-                      <Styles.Description>
-                        {formattedData.description ||
-                          "No description available"}
-                      </Styles.Description>
-                    </Styles.Group>
-                    <Styles.Group>
-                      <Styles.Button
-                        onClick={() =>
-                          navigate(`/characters/${formattedData.id}`)
-                        }
-                      >
-                        See details
-                      </Styles.Button>
-                      <Styles.Button onClick={() => navigate(`/${key}`)}>
-                        Go to {key} list
-                      </Styles.Button>
-                    </Styles.Group>
-                  </Styles.SlideSubContent>
-                </Styles.SlideContent>
-              </Styles.SlideContainer>
-            );
-          }
-
-          return (
-            //insert skeleton or spinner here
-            <Styles.SlideContainer>
-              <div key={key}>
+        {Object.keys(data).map((key, index) => (
+          <Styles.SlideContainer key={key}>
+            {!isLoading[key as PAGE_TYPES_KEY] ? (
+              <Styles.SlideContent>
+                <Styles.Image
+                  src={
+                    formatData(
+                      data[key as PAGE_TYPES_KEY][0],
+                      key as PAGE_TYPES_KEY
+                    ).image
+                  }
+                />
+                <Styles.SlideSubContent>
+                  <Styles.Group>
+                    <Styles.Title>
+                      {
+                        formatData(
+                          data[key as PAGE_TYPES_KEY][0],
+                          key as PAGE_TYPES_KEY
+                        ).name
+                      }
+                    </Styles.Title>
+                    <Styles.Description>
+                      {formatData(
+                        data[key as PAGE_TYPES_KEY][0],
+                        key as PAGE_TYPES_KEY
+                      ).description || "No description available"}
+                    </Styles.Description>
+                  </Styles.Group>
+                  <Styles.Group>
+                    <Styles.Button
+                      onClick={() =>
+                        navigate(
+                          `/${key}/${
+                            formatData(
+                              data[key as PAGE_TYPES_KEY][0],
+                              key as PAGE_TYPES_KEY
+                            ).id
+                          }`
+                        )
+                      }
+                    >
+                      See details
+                    </Styles.Button>
+                    <Styles.Button onClick={() => navigate(`/${key}`)}>
+                      Go to {key} list
+                    </Styles.Button>
+                  </Styles.Group>
+                </Styles.SlideSubContent>
+              </Styles.SlideContent>
+            ) : (
+              <div key={`loading-${index}`}>
                 <h1>{key}</h1>
                 <span>Loading...</span>
               </div>
-            </Styles.SlideContainer>
-          );
-        })}
+            )}
+          </Styles.SlideContainer>
+        ))}
       </Slider>
     </Styles.Container>
   );

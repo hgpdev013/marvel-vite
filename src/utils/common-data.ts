@@ -40,8 +40,11 @@ export const formatData = (
     name: data[NAME_TYPES[type]] || "Unknown",
     description: data.description || "Unknown description",
     image: data.thumbnail
-      ? `${data.thumbnail.path}.${data.thumbnail.extension}`
-      : "https://fakeimg.pl/250x250?text=Unknown",
+      ? data.thumbnail.path !==
+        "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
+        ? `${data.thumbnail.path}.${data.thumbnail.extension}`
+        : "https://fakeimg.pl/1000x1000?text=Unknown"
+      : "https://fakeimg.pl/1000x1000?text=Unknown",
     totalData: total || 0,
   };
 };

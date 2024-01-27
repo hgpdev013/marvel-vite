@@ -4,6 +4,7 @@ import { getCommonData } from "../../services";
 import { Results } from "../../types";
 import { PAGE_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
 import * as Styles from "./styles";
+import { Layout } from "../../styles/global";
 
 export default function HomePage() {
   const [carouselData, setCarouselData] = useState<{
@@ -28,7 +29,7 @@ export default function HomePage() {
       const { data } = await getCommonData({
         limit: 1,
         type,
-        offset: Math.floor(Math.random() * 100),
+        offset: Math.floor(Math.random() * 50),
       });
 
       setCarouselData((prevData) => ({
@@ -48,8 +49,10 @@ export default function HomePage() {
   }, [fetchRandomData]);
 
   return (
-    <Styles.Container>
-      <HomeCarousel data={carouselData} isLoading={isLoading} />
-    </Styles.Container>
+    <Layout>
+      <Styles.Container>
+        <HomeCarousel data={carouselData} isLoading={isLoading} />
+      </Styles.Container>
+    </Layout>
   );
 }
