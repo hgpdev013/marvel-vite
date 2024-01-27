@@ -47,29 +47,22 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   gap: 1rem;
-
   width: 100%;
+`;
 
-  > span {
-    color: ${({ theme }) => theme.login.text};
-    font-size: 2rem;
-  }
+export const Input = styled.input`
+  width: 100%;
+  height: 3rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  border: 0;
+  background: ${({ theme }) => theme.login.inputBackground};
+  color: ${({ theme }) => theme.login.text};
 
-  > input {
-    width: 100%;
-    height: 3rem;
-    padding: 0 1rem;
-    border-radius: 0.5rem;
-    border: 0;
-    background: ${({ theme }) => theme.login.inputBackground};
-    color: ${({ theme }) => theme.login.text};
-
-    &:focus {
-      outline: none;
-      border: 1.5px solid #000;
-    }
+  &:focus {
+    outline: none;
+    border: 1.5px solid #000;
   }
 `;
 

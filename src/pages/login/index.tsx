@@ -29,14 +29,14 @@ export default function LoginPage() {
           <Styles.SubContent>
             <Styles.InputGroup>
               <span>Public Key</span>
-              <input
+              <Styles.Input
                 placeholder="Enter your public key"
                 onBlur={(e) => handleChangeValue(e.target.value, "publicKey")}
               />
             </Styles.InputGroup>
             <Styles.InputGroup>
               <span>Private Key</span>
-              <input
+              <Styles.Input
                 placeholder="Enter your private key"
                 onBlur={(e) => handleChangeValue(e.target.value, "privateKey")}
               />
