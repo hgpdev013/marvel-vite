@@ -48,7 +48,7 @@ export default function HomePage() {
   }, [fetchRandomData]);
 
   return (
-    <Layout>
+    <Layout showNavigation>
       <Styles.Container>
         <HomeCarousel data={carouselData} isLoading={isLoading} />
       </Styles.Container>

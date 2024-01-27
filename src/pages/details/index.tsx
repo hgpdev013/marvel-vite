@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import { SubDetails } from "../../components";
+import { Layout, SubDetails } from "../../components";
 import { getDetails, getSubDetails } from "../../services";
 import { Results } from "../../types";
 import {
@@ -116,20 +116,22 @@ export default function DetailsPage() {
   }, [fetchedData]);
 
   return (
-    <Styles.Container>
-      <div>
-        <button onClick={() => navigate(-1)}></button>
-        <h1>{formattedData.name}</h1>
-      </div>
-      {Object.keys(nestedLists).map((key) => {
-        return (
-          <SubDetails
-            key={key}
-            subType={key as PAGE_TYPES_KEY}
-            data={nestedLists[key as PAGE_TYPES_KEY]}
-          />
-        );
-      })}
-    </Styles.Container>
+    <Layout showNavigation>
+      <Styles.Container>
+        <div>
+          <button onClick={() => navigate(-1)}></button>
+          <h1>{formattedData.name}</h1>
+        </div>
+        {Object.keys(nestedLists).map((key) => {
+          return (
+            <SubDetails
+              key={key}
+              subType={key as PAGE_TYPES_KEY}
+              data={nestedLists[key as PAGE_TYPES_KEY]}
+            />
+          );
+        })}
+      </Styles.Container>
+    </Layout>
   );
 }

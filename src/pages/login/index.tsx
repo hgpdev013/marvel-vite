@@ -27,7 +27,7 @@ export default function LoginPage() {
   }
 
   return (
-    <Layout>
+    <Layout showNavigation={false}>
       <Styles.Container>
         <Styles.Content onSubmit={handleSubmit}>
           <img src="marvel_logo.png" alt="MARVEL LOGO" />

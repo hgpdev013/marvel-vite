@@ -44,7 +44,7 @@ export default function ListsPage() {
   }, []);
 
   return (
-    <Layout>
+    <Layout showNavigation={false}>
       <List
         data={data}
         fetchData={fetchDataPerType}

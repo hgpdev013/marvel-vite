@@ -1,7 +1,7 @@
 import { ArrowCircleUp } from "@phosphor-icons/react";
 import { useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Card } from "..";
+import { Card, Navigation } from "..";
 import {
   FormattedDataProps,
   GET_LIMIT,
@@ -25,7 +25,8 @@ export const List = ({ data, type, fetchData, offset }: ListProps) => {
   }
 
   return (
-    <Styles.Container ref={containerRef}>
+    <Styles.Container ref={containerRef} id="scrollableDiv">
+      <Navigation />
       <InfiniteScroll
         dataLength={data.length}
         next={() => fetchData(offset + GET_LIMIT)}
