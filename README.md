@@ -1,8 +1,8 @@
-# 🦸🏻‍♂️ **MARVEL CENTER**
+# 🦸🏻‍♂️ **MARVEL CENTER APP**
 
 ## 🔍 **Sobre o Projeto**
 
-O **MARVEL CENTER** tem a intenção de disponibilizar dados fornecidos pela [MARVEL COMICS API](https://developer.marvel.com/docs) de forma interativa e dinâmica aos usuários, fornecendo tanto informações específicas conforme seu gosto, quanto randomizadas, para você conhecer.
+O **MARVEL CENTER APP** tem a intenção de disponibilizar dados fornecidos pela [MARVEL COMICS API](https://developer.marvel.com/docs) de forma interativa e dinâmica aos usuários, fornecendo tanto informações específicas conforme seu gosto, quanto randomizadas, para você conhecer.
 Foi desenvolvida utilizando React.js com TypeScript, e em sua estilização, foi optado pelo Styled-Components.
 Para manter o código limpo e padronizado, foram configurados ESLint e Prettier no projeto.
 
