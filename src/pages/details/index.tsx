@@ -74,7 +74,10 @@ export default function DetailsPage() {
       [subType]: subData.results,
     }));
 
-    if (subData.total > subData.offset + subData.limit) {
+    if (
+      subData.total > subData.offset + subData.limit &&
+      subData.offset + subData.limit < 40
+    ) {
       await fetchSubTypeData(typeToFetch, id, subType, offset + limit, limit);
     }
   }
