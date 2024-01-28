@@ -5,6 +5,7 @@
 O **MARVEL CENTER APP** tem a intenção de disponibilizar dados fornecidos pela [MARVEL COMICS API](https://developer.marvel.com/docs) de forma interativa e dinâmica aos usuários, fornecendo tanto informações específicas conforme seu gosto, quanto randomizadas, para você conhecer.
 Foi desenvolvida utilizando React.js com TypeScript, e em sua estilização, foi optado pelo Styled-Components.
 Para manter o código limpo e padronizado, foi configurado o ESLint no projeto.
+[Acesse o deploy aqui](https://marvel-vite-eight.vercel.app/).
 
 ## 🛠 **Dependências**
 
