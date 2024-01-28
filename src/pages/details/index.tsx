@@ -53,7 +53,7 @@ export default function DetailsPage() {
 
       setFormattedData(preFormattedData);
     } catch (error: any) {
-      if (error.response.status === 429) {
+      if (error?.response?.status === 429) {
         toast.error(
           "You have exceeded the request limit. Please try again later."
         );

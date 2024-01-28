@@ -34,15 +34,15 @@ export default function ListsPage() {
         setData((prev) => [...prev, ...dataFormatted]);
         setOffset(offset);
       } catch (error: any) {
-        if (error.response.status === 429) {
+        if (error?.response?.status === 429) {
           toast.error(
             "You have exceeded the request limit. Please try again later."
           );
           navigate("/home");
-          return;
+        } else {
+          toast.error("The type you tried to list doesn't exists.");
+          navigate("/home");
         }
-        toast.error("The type you tried to list doesn't exists.");
-        navigate("/home");
       }
       setIsLoading(false);
     },
