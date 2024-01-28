@@ -1,13 +1,12 @@
 import { ArrowCircleUp } from "@phosphor-icons/react";
 import { useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Card, Navigation } from "..";
+import { Card, Navigation, Sidebar } from "..";
 import {
   FormattedDataProps,
   GET_LIMIT,
   PAGE_TYPES_KEY,
 } from "../../utils/common-data";
-import { Sidebar } from "../Sidebar";
 import * as Styles from "./styles";
 
 interface ListProps {

@@ -1,6 +1,5 @@
 import { PropsWithChildren } from "react";
-import { Navigation } from "..";
-import { Sidebar } from "../Sidebar";
+import { Navigation, Sidebar } from "..";
 import { Container } from "./styles";
 import { useSidebar } from "../../hooks";
 

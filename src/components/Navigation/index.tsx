@@ -1,4 +1,4 @@
-import { List, SignOut } from "@phosphor-icons/react";
+import { List, Moon, SignOut, Sun } from "@phosphor-icons/react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   PAGES_NAMES,
@@ -6,20 +6,27 @@ import {
   PAGE_TYPES_KEY,
 } from "../../utils/common-data";
 import * as Styles from "./styles";
-import { useAuth, useSidebar } from "../../hooks";
+import { useAuth, useSidebar, useTheme } from "../../hooks";
 
 export const Navigation = () => {
   const navigate = useNavigate();
-  const { toggleMenu } = useSidebar();
+  const { isOpen, toggleMenu } = useSidebar();
   const { handleLogout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const { type } = useParams();
 
   return (
     <Styles.Container>
-      <Styles.ListIcon onClick={toggleMenu}>
+      <Styles.ListIcon className="hidden" onClick={toggleMenu}>
         <List />
       </Styles.ListIcon>
-      <Styles.ListItem isReductable={false} onClick={() => navigate("/home")}>
+      <Styles.ListItem
+        isReductable={false}
+        onClick={() => {
+          navigate("/home");
+          isOpen && toggleMenu();
+        }}
+      >
         <img src="/marvel_logo.png" alt="MARVEL LOGO" />
       </Styles.ListItem>
       {Object.keys(PAGE_TYPES).map((key) => {
@@ -34,11 +41,18 @@ export const Navigation = () => {
           </Styles.ListItem>
         );
       })}
-      {
-        <Styles.ListIcon>
-          <SignOut onClick={handleLogout} />
-        </Styles.ListIcon>
-      }
+      <Styles.GroupIcons>
+        <Styles.ListItem isReductable>
+          <Styles.ListIcon onClick={toggleTheme}>
+            {theme === "light" ? <Sun /> : <Moon />}
+          </Styles.ListIcon>
+        </Styles.ListItem>
+        <Styles.ListItem isReductable={false}>
+          <Styles.ListIcon>
+            <SignOut onClick={handleLogout} />
+          </Styles.ListIcon>
+        </Styles.ListItem>
+      </Styles.GroupIcons>
     </Styles.Container>
   );
 };

@@ -24,6 +24,13 @@ export const Container = styled.ul<{ isOpen: boolean }>`
   transition: all 0.5s ease-in-out;
 `;
 
+export const Group = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1.2rem;
+`;
+
 export const ListItem = styled.li`
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -32,5 +39,22 @@ export const ListItem = styled.li`
   &:hover {
     background-color: ${({ theme }) => theme.sidebar.text};
     color: ${({ theme }) => theme.sidebar.background};
+  }
+`;
+
+export const ListIcon = styled.button`
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: ${({ theme }) => theme.sidebar.text};
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  > svg {
+    width: 2rem;
+    height: 2rem;
   }
 `;

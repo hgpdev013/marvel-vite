@@ -66,23 +66,30 @@ export const ListIcon = styled.button`
     height: 2rem;
   }
 
-  &:first-child {
+  &.hidden {
     display: none;
   }
 
-  &:last-child {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 768px) {
-    &:first-child {
+    &.hidden {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
   }
+`;
+
+export const GroupIcons = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
 `;

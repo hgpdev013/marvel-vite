@@ -10,15 +10,15 @@ import { GlobalStyle } from "../styles/global";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>
-  <CookiesProvider defaultSetOptions={{ path: "/" }}>
-    <AuthProvider>
-      <ThemeManagementProvider>
+  <ThemeManagementProvider>
+    <CookiesProvider defaultSetOptions={{ path: "/" }}>
+      <AuthProvider>
         <SidebarProvider>
           <Routes />
           <GlobalStyle />
         </SidebarProvider>
-      </ThemeManagementProvider>
-    </AuthProvider>
-  </CookiesProvider>
+      </AuthProvider>
+    </CookiesProvider>
+  </ThemeManagementProvider>
   // </React.StrictMode>
 );

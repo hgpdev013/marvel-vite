@@ -4,3 +4,4 @@ export * from "./Navigation";
 export * from "./SubDetails";
 export * from "./HomeCarousel";
 export * from "./Layout";
+export * from "./Sidebar";
