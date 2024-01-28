@@ -15,7 +15,8 @@ Para manter o código limpo e padronizado, foi configurado o ESLint no projeto.
 * **Js-md5** para criptografia de dados.
 * **React-Slick** para implementação de carrosséis.
 * **React Loading Skeleton** para criar animações do tipo *Skeleton*.
-* **React Router Dom** para gerenciamento de rotas no React.
+* **React Router Dom** para roteamento.
+* **Phosport Icons** para ícones.
 
 ## ⚙️ **Como rodar o projeto**
 
