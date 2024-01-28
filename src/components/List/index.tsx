@@ -1,7 +1,7 @@
 import { ArrowCircleUp } from "@phosphor-icons/react";
 import { useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Card, Navigation, Sidebar } from "..";
+import { Card, CarouselLoading, Navigation, Sidebar } from "..";
 import {
   FormattedDataProps,
   GET_LIMIT,
@@ -14,9 +14,16 @@ interface ListProps {
   type: PAGE_TYPES_KEY;
   fetchData: (offset: number, type: PAGE_TYPES_KEY) => void;
   offset: number;
+  isLoading: boolean;
 }
 
-export const List = ({ data, type, fetchData, offset }: ListProps) => {
+export const List = ({
+  data,
+  type,
+  fetchData,
+  offset,
+  isLoading,
+}: ListProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   function scrollToTop() {
@@ -40,6 +47,10 @@ export const List = ({ data, type, fetchData, offset }: ListProps) => {
           {data.map((data) => (
             <Card key={data.id} data={data} type={type} />
           ))}
+          {isLoading &&
+            Array.from({ length: 3 }).map((_, index) => (
+              <CarouselLoading key={index} />
+            ))}
         </Styles.Content>
       </InfiniteScroll>
       <Styles.TopButton onClick={() => scrollToTop()}>

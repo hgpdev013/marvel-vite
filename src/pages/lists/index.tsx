@@ -15,9 +15,11 @@ export default function ListsPage() {
   const navigate = useNavigate();
   const [offset, setOffset] = useState(0);
   const [data, setData] = useState<FormattedDataProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchDataPerType = useCallback(
     async (offset: number, typeToFetch: PAGE_TYPES_KEY) => {
+      setIsLoading(true);
       try {
         const { data } = await getCommonData({
           limit: GET_LIMIT,
@@ -42,6 +44,7 @@ export default function ListsPage() {
         toast.error("The type you tried to list doesn't exists.");
         navigate("/home");
       }
+      setIsLoading(false);
     },
     [offset, setData]
   );
@@ -57,6 +60,7 @@ export default function ListsPage() {
         data={data}
         fetchData={fetchDataPerType}
         offset={offset}
+        isLoading={isLoading}
         type={type as PAGE_TYPES_KEY}
       />
     </Layout>

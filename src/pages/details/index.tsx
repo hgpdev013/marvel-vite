@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Layout, SubDetails } from "../../components";
 import { getDetails, getSubDetails } from "../../services";
 import { Results } from "../../types";
@@ -24,6 +24,17 @@ export default function DetailsPage() {
   const [nestedLists, setNestedLists] = useState<{
     [key in PAGE_TYPES_KEY]: Results[];
   }>({} as { [key in PAGE_TYPES_KEY]: Results[] });
+
+  const [isLoading, setIsLoading] = useState<{
+    [key in PAGE_TYPES_KEY]: boolean;
+  }>({
+    characters: true,
+    comics: true,
+    creators: true,
+    events: true,
+    series: true,
+    stories: true,
+  });
 
   async function fetchDataByIdAndType(typeToFetch: PAGE_TYPES_KEY, id: number) {
     setFetchedData({} as Results);
@@ -61,6 +72,11 @@ export default function DetailsPage() {
     offset: number,
     limit: number
   ) {
+    setIsLoading((prev) => ({
+      ...prev,
+      [subType]: true,
+    }));
+
     const { data: subData } = await getSubDetails({
       type: typeToFetch,
       id,
@@ -72,6 +88,11 @@ export default function DetailsPage() {
     setNestedLists((prev) => ({
       ...prev,
       [subType]: subData.results,
+    }));
+
+    setIsLoading((prev) => ({
+      ...prev,
+      [subType]: false,
     }));
 
     if (
@@ -125,6 +146,7 @@ export default function DetailsPage() {
           {Object.keys(nestedLists).map((key) => {
             return (
               <SubDetails
+                isLoading={isLoading[key as PAGE_TYPES_KEY]}
                 key={key}
                 subType={key as PAGE_TYPES_KEY}
                 data={nestedLists[key as PAGE_TYPES_KEY]}

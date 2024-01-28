@@ -6,3 +6,4 @@ export * from "./HomeCarousel";
 export * from "./Layout";
 export * from "./Sidebar";
 export * from "./DetailsCarousel";
+export * from "./CarouselLoading";
