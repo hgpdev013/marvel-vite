@@ -4,6 +4,7 @@ import { getCommonData } from "../../services";
 import { Results } from "../../types";
 import { PAGE_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
 import * as Styles from "./styles";
+import { HomeLoading } from "../../components/HomeLoading";
 
 export default function HomePage() {
   const [carouselData, setCarouselData] = useState<{
@@ -50,7 +51,11 @@ export default function HomePage() {
   return (
     <Layout showNavigation>
       <Styles.Container>
-        <HomeCarousel data={carouselData} isLoading={isLoading} />
+        {Object.values(isLoading).filter((value) => !value).length >= 2 ? (
+          <HomeCarousel data={carouselData} isLoading={isLoading} />
+        ) : (
+          <HomeLoading />
+        )}
       </Styles.Container>
     </Layout>
   );
