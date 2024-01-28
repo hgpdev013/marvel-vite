@@ -37,7 +37,7 @@ npm run dev
 
 ## 📍 **Dicas**
 
-* Para poder acessar a aplicação, é necessário ter uma chave de [API](https://https://developer.marvel.com/).
+* Para poder acessar a aplicação, é necessário ter uma chave de [API](https://developer.marvel.com/docs).
 
 * Atualize algumas vezes, você pode se surpreender com itens que você talvez nem conheça no universo Marvel❗️ 
 
