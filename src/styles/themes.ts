@@ -28,6 +28,11 @@ export const themes = {
       background: "#fff",
       text: "#000",
     },
+
+    filter: {
+      text: "#221f1f",
+      background: "#fff",
+    },
   },
   dark: {
     background: "#221F1F",
@@ -55,6 +60,10 @@ export const themes = {
     sidebar: {
       background: "#221F1F",
       text: "#fff",
+    },
+    filter: {
+      text: "#FDD835",
+      background: "#221F1F",
     },
   },
 };

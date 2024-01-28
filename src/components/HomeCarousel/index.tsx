@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import { HomeLoading } from "..";
 import { Results } from "../../types";
 import { PAGE_TYPES_KEY, formatData } from "../../utils/common-data";
 import * as Styles from "./styles";
@@ -25,7 +26,7 @@ export const HomeCarousel = ({ data, isLoading }: HomeCarouselProps) => {
   return (
     <Styles.Container>
       <Slider {...settings}>
-        {Object.keys(data).map((key, index) => (
+        {Object.keys(data).map((key) => (
           <Styles.SlideContainer key={key}>
             {!isLoading[key as PAGE_TYPES_KEY] ? (
               <Styles.SlideContent>
@@ -77,10 +78,7 @@ export const HomeCarousel = ({ data, isLoading }: HomeCarouselProps) => {
                 </Styles.SlideSubContent>
               </Styles.SlideContent>
             ) : (
-              <div key={`loading-${index}`}>
-                <h1>{key}</h1>
-                <span>Loading...</span>
-              </div>
+              <HomeLoading />
             )}
           </Styles.SlideContainer>
         ))}

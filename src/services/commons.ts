@@ -29,7 +29,8 @@ export async function getCommonData({
   isDesc,
   signal,
 }: CommonParams & CommonDataFilters): Promise<GetResponse> {
-  let toFetchOrderBy = "";
+  let toFetchOrderBy =
+    orderBy === "name" ? (ORDER_BY_FILTER[type] as OrderBy) : orderBy || "";
 
   if (isDesc) {
     if (toFetchOrderBy === "name") {
@@ -37,9 +38,6 @@ export async function getCommonData({
     } else {
       toFetchOrderBy = `-${toFetchOrderBy}` as OrderBy;
     }
-  } else {
-    toFetchOrderBy =
-      orderBy === "name" ? (ORDER_BY_FILTER[type] as OrderBy) : orderBy || "";
   }
 
   const { data } = await api.get(`/${type}`, {
