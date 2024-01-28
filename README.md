@@ -17,7 +17,7 @@ Para manter o código limpo e padronizado, foi configurado o ESLint no projeto.
 * **React-Slick** para implementação de carrosséis.
 * **React Loading Skeleton** para criar animações do tipo *Skeleton*.
 * **React Router Dom** para roteamento.
-* **Phosport Icons** para ícones.
+* **Phosphor Icons** para ícones.
 
 ## ⚙️ **Como rodar o projeto**
 
