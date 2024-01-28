@@ -7,6 +7,8 @@ export const Container = styled.div`
   position: relative;
   max-width: 15rem;
   cursor: pointer;
+  user-select: none;
+
   transition: all 0.3s ease-in-out;
 
   > img {

@@ -31,6 +31,7 @@ export const ListItem = styled.li<{
   cursor: pointer;
   min-width: 2rem;
   font-size: 1.2rem;
+  user-select: none;
 
   color: ${({ theme, isSelected }) =>
     isSelected ? theme.navbar.text : theme.primary};
