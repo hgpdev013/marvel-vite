@@ -12,8 +12,6 @@ import {
 } from "../../utils/common-data";
 import * as Styles from "./styles";
 
-const SUB_LIMIT = 8;
-
 export default function DetailsPage() {
   const { id, type } = useParams();
   const navigate = useNavigate();
@@ -27,29 +25,10 @@ export default function DetailsPage() {
     [key in PAGE_TYPES_KEY]: Results[];
   }>({} as { [key in PAGE_TYPES_KEY]: Results[] });
 
-  const [offset, setOffset] = useState<{
-    [key in PAGE_TYPES_KEY]: number;
-  }>({
-    comics: 0,
-    characters: 0,
-    creators: 0,
-    events: 0,
-    stories: 0,
-    series: 0,
-  } as { [key in PAGE_TYPES_KEY]: number });
-
   async function fetchDataByIdAndType(typeToFetch: PAGE_TYPES_KEY, id: number) {
     setFetchedData({} as Results);
     setFormattedData({} as FormattedDataProps);
     setNestedLists({} as { [key in PAGE_TYPES_KEY]: Results[] });
-    setOffset({
-      comics: 0,
-      characters: 0,
-      creators: 0,
-      events: 0,
-      stories: 0,
-      series: 0,
-    });
     try {
       const { data } = await getDetails(typeToFetch, id);
 
@@ -78,25 +57,26 @@ export default function DetailsPage() {
   async function fetchSubTypeData(
     typeToFetch: PAGE_TYPES_KEY,
     id: number,
-    subType: PAGE_TYPES_KEY
+    subType: PAGE_TYPES_KEY,
+    offset: number,
+    limit: number
   ) {
     const { data: subData } = await getSubDetails({
       type: typeToFetch,
       id,
       subType: subType as PAGE_TYPES_KEY,
-      limit: SUB_LIMIT,
-      offset: offset[subType as PAGE_TYPES_KEY],
+      offset: offset,
+      limit: limit,
     });
-
-    setOffset((prev) => ({
-      ...prev,
-      [subType]: prev[subType as PAGE_TYPES_KEY] + SUB_LIMIT,
-    }));
 
     setNestedLists((prev) => ({
       ...prev,
       [subType]: subData.results,
     }));
+
+    if (subData.total > subData.offset + subData.limit) {
+      await fetchSubTypeData(typeToFetch, id, subType, offset + limit, limit);
+    }
   }
 
   useEffect(() => {
@@ -106,17 +86,20 @@ export default function DetailsPage() {
 
   useEffect(() => {
     if (!id || !type || !fetchedData) return;
-    Object.keys(fetchedData).forEach(async (key) => {
+
+    Object.keys(fetchedData).map(async (key) => {
+      if (!fetchedData[key as PAGE_TYPES_KEY]) return;
       if (
-        key !== PAGE_TYPES[key as PAGE_TYPES_KEY] ||
-        fetchedData[key as PAGE_TYPES_KEY]?.items.length === 0
-      )
-        return;
-      if (fetchedData[key as PAGE_TYPES_KEY]?.items.length > 0) {
-        fetchSubTypeData(
+        key === PAGE_TYPES[key as PAGE_TYPES_KEY] &&
+        fetchedData[key as PAGE_TYPES_KEY]?.items.length > 0 &&
+        fetchedData[key as PAGE_TYPES_KEY]?.returned > 0
+      ) {
+        await fetchSubTypeData(
           type as PAGE_TYPES_KEY,
           Number(id),
-          key as PAGE_TYPES_KEY
+          key as PAGE_TYPES_KEY,
+          0,
+          fetchedData[key as PAGE_TYPES_KEY]?.returned
         );
       }
     });
@@ -125,7 +108,6 @@ export default function DetailsPage() {
   return (
     <Layout showNavigation>
       <Styles.Container>
-        <button onClick={() => navigate(-1)}></button>
         <Styles.Content>
           <Styles.Image src={formattedData.image} />
           <Styles.SubContent>
