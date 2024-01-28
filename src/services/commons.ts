@@ -1,6 +1,6 @@
 import { setupAPIClient } from ".";
-import { CommonParams, GetResponse } from "../types";
-import { PAGE_TYPES_KEY } from "../utils/common-data";
+import { CommonParams, GetResponse, OrderBy } from "../types";
+import { ORDER_BY_FILTER, PAGE_TYPES_KEY } from "../utils/common-data";
 
 const api = setupAPIClient();
 
@@ -15,7 +15,9 @@ const REQUEST_NAME_FILTER = {
 interface CommonDataFilters {
   type: PAGE_TYPES_KEY;
   startsWith?: string;
-  orderBy?: string;
+  orderBy?: OrderBy;
+  isDesc?: boolean;
+  signal?: AbortSignal;
 }
 
 export async function getCommonData({
@@ -24,14 +26,30 @@ export async function getCommonData({
   type,
   startsWith,
   orderBy,
+  isDesc,
+  signal,
 }: CommonParams & CommonDataFilters): Promise<GetResponse> {
+  let toFetchOrderBy = "";
+
+  if (isDesc) {
+    if (toFetchOrderBy === "name") {
+      toFetchOrderBy = "-name";
+    } else {
+      toFetchOrderBy = `-${toFetchOrderBy}` as OrderBy;
+    }
+  } else {
+    toFetchOrderBy =
+      orderBy === "name" ? (ORDER_BY_FILTER[type] as OrderBy) : orderBy || "";
+  }
+
   const { data } = await api.get(`/${type}`, {
     params: {
       limit,
       offset,
       [REQUEST_NAME_FILTER[type]]: startsWith,
-      orderBy,
+      orderBy: toFetchOrderBy,
     },
+    signal,
   });
 
   return data;

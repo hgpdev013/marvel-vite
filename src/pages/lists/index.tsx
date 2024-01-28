@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Layout, List } from "../../components";
 import { getCommonData } from "../../services";
+import { OrderBy } from "../../types";
 import {
   FormattedDataProps,
   GET_LIMIT,
@@ -16,15 +17,31 @@ export default function ListsPage() {
   const [offset, setOffset] = useState(0);
   const [data, setData] = useState<FormattedDataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [orderBy, setOrderBy] = useState<"name" | "modified">("name");
+  const [startsWith, setStartsWith] = useState(undefined);
+  const [abortController, setAbortController] = useState(new AbortController());
 
   const fetchDataPerType = useCallback(
-    async (offset: number, typeToFetch: PAGE_TYPES_KEY) => {
+    async (
+      offset: number,
+      typeToFetch: PAGE_TYPES_KEY,
+      orderBy?: OrderBy,
+      startsWith?: string,
+      isDesc?: boolean
+    ) => {
       setIsLoading(true);
+      const controller = new AbortController();
+      setAbortController(controller);
+
       try {
         const { data } = await getCommonData({
           limit: GET_LIMIT,
           offset: offset,
           type: typeToFetch as PAGE_TYPES_KEY,
+          orderBy,
+          startsWith,
+          isDesc,
+          signal: controller.signal,
         });
 
         const dataFormatted = data.results.map((value) =>
@@ -34,25 +51,32 @@ export default function ListsPage() {
         setData((prev) => [...prev, ...dataFormatted]);
         setOffset(offset);
       } catch (error: any) {
+        if (error?.name === "CanceledError") return;
         if (error?.response?.status === 429) {
           toast.error(
             "You have exceeded the request limit. Please try again later."
           );
-          navigate("/home");
-        } else {
-          toast.error("The type you tried to list doesn't exists.");
-          navigate("/home");
+          return;
         }
+
+        toast.error("The type you tried to list doesn't exist.");
+        navigate("/home");
       }
       setIsLoading(false);
     },
-    [offset, setData]
+    [setData, navigate]
   );
 
   useEffect(() => {
     setData([]);
-    fetchDataPerType(0, type as PAGE_TYPES_KEY);
-  }, [type]);
+    setOffset(0);
+    setOrderBy("name");
+    setStartsWith(undefined);
+
+    abortController.abort();
+
+    fetchDataPerType(0, type as PAGE_TYPES_KEY, orderBy, startsWith);
+  }, [type, fetchDataPerType, orderBy, startsWith]);
 
   return (
     <Layout showNavigation={false}>
