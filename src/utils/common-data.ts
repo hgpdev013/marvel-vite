@@ -3,11 +3,11 @@ import { Results } from "../types";
 export const GET_LIMIT = 25;
 
 export const PAGE_TYPES = {
-  events: "events",
-  comics: "comics",
   characters: "characters",
-  series: "series",
+  comics: "comics",
   creators: "creators",
+  events: "events",
+  series: "series",
   stories: "stories",
 } as const;
 
@@ -19,6 +19,16 @@ export const NAME_TYPES = {
   events: "title",
   series: "title",
 } as const;
+
+
+export const PAGES_NAMES = {
+  comics: "Comics",
+  characters: "Characters",
+  creators: "Creators",
+  events: "Events",
+  series: "Series",
+  stories: "Stories",
+};
 
 export type PAGE_TYPES_KEY = keyof typeof PAGE_TYPES;
 

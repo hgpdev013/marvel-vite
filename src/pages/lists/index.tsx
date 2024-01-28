@@ -31,14 +31,21 @@ export default function ListsPage() {
 
         setData((prev) => [...prev, ...dataFormatted]);
         setOffset(offset);
-      } catch (error) {
+      } catch (error: any) {
+        if (error.response.status === 429) {
+          toast.error(
+            "You have exceeded the request limit. Please try again later."
+          );
+          navigate("/home");
+          return;
+        }
         toast.error("The type you tried to list doesn't exists.");
         navigate("/home");
       }
     },
     [offset, setData]
   );
-  
+
   useEffect(() => {
     fetchDataPerType(0);
   }, []);

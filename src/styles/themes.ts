@@ -19,6 +19,15 @@ export const themes = {
       text: "#000",
       background: "#FDD835",
     },
+    navbar: {
+      background: "#221F1F",
+      text: "#fff",
+      shadow: "0 0.3rem 1rem rgba(255, 255, 255, 0.2)",
+    },
+    sidebar: {
+      background: "#fff",
+      text: "#000",
+    },
   },
   dark: {
     background: "#221F1F",
@@ -37,6 +46,15 @@ export const themes = {
       selected: "#EA1022",
       text: "#000",
       background: "#FDD835",
+    },
+    navbar: {
+      background: "#221F1F",
+      text: "#fff",
+      shadow: "0 0.3rem 1rem rgba(255, 255, 255, 0.2)",
+    },
+    sidebar: {
+      background: "#221F1F",
+      text: "#fff",
     },
   },
 };

@@ -62,7 +62,14 @@ export default function DetailsPage() {
       );
 
       setFormattedData(preFormattedData);
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response.status === 429) {
+        toast.error(
+          "You have exceeded the request limit. Please try again later."
+        );
+        navigate("/home");
+        return;
+      }
       toast.error("The item you tried to access does not exist.");
       navigate(`/${typeToFetch}`);
     }

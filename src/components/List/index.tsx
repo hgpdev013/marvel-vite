@@ -7,6 +7,7 @@ import {
   GET_LIMIT,
   PAGE_TYPES_KEY,
 } from "../../utils/common-data";
+import { Sidebar } from "../Sidebar";
 import * as Styles from "./styles";
 
 interface ListProps {
@@ -27,6 +28,7 @@ export const List = ({ data, type, fetchData, offset }: ListProps) => {
   return (
     <Styles.Container ref={containerRef} id="scrollableDiv">
       <Navigation />
+      <Sidebar />
       <InfiniteScroll
         dataLength={data.length}
         next={() => fetchData(offset + GET_LIMIT)}
