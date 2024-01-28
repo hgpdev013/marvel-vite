@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
 
@@ -12,29 +13,32 @@ export const Container = styled.div`
   transition: all 0.3s ease-in-out;
 
   > img {
+    position: relative;
     width: 15rem;
-    height: 15rem;
+    height: 20rem;
 
     border-bottom: 2px solid ${({ theme }) => theme.text};
   }
 
   &:hover {
-    box-shadow: -1rem 0.5rem 2rem ${({ theme }) => theme.secondary};
+    box-shadow: 0 0 2rem ${({ theme }) => theme.primary};
     transform: scale(1.01);
-    transform: translate(10px, -7px);
 
-    > div,
-    h1 {
-      display: flex;
-      white-space: normal;
-      overflow: visible;
-      text-overflow: unset;
-      -webkit-line-clamp: 0;
+    > div {
+      h1 {
+        display: flex;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        -webkit-line-clamp: 0;
+      }
     }
   }
 `;
 
 export const Content = styled.div`
+  position: absolute;
+  bottom: 0;
   width: 100%;
   padding: 1rem;
 

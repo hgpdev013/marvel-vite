@@ -22,7 +22,6 @@ export const ThemeManagementProvider = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
-    if (localStorageTheme) return;
     localStorage.setItem("theme", theme);
   }, [theme, localStorageTheme]);
 

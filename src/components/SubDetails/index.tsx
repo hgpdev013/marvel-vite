@@ -22,7 +22,7 @@ export const SubDetails = ({ data, subType, isLoading }: SubDetailsProps) => {
       {!isLoading ? (
         <DetailsCarousel data={formattedData} type={subType} />
       ) : (
-        <CarouselLoading />
+        <CarouselLoading isWrappable={false} />
       )}
     </Styles.Container>
   );

@@ -49,7 +49,7 @@ export const List = ({
           ))}
           {isLoading &&
             Array.from({ length: 3 }).map((_, index) => (
-              <CarouselLoading key={index} />
+              <CarouselLoading key={index} isWrappable />
             ))}
         </Styles.Content>
       </InfiniteScroll>
