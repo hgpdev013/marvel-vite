@@ -66,7 +66,8 @@ export default function ListsPage() {
         if (error?.name === "CanceledError") return;
         if (error?.response?.status === 429) {
           toast.error(
-            "You have exceeded the request limit. Please try again later."
+            "You have exceeded the request limit. Please try again later.",
+            { toastId: "429" }
           );
           return;
         }

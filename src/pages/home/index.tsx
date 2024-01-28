@@ -39,12 +39,15 @@ export default function HomePage() {
       } catch (error: any) {
         if (error?.response?.status === 429) {
           toast.error(
-            "You have exceeded the request limit. Please try again later."
+            "You have exceeded the request limit. Please try again later.",
+            { toastId: "429" }
           );
           return;
         }
 
-        toast.error("Your credentials are invalid. Please try again.");
+        toast.error("Your credentials are invalid. Please try again.", {
+          toastId: "401/409",
+        });
       }
 
       setIsLoading((prev) => ({ ...prev, [type]: false }));

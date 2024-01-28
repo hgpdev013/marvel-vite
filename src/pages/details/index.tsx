@@ -58,11 +58,12 @@ export default function DetailsPage() {
     } catch (error: any) {
       if (error?.response?.status === 429) {
         toast.error(
-          "You have exceeded the request limit. Please try again later."
+          "You have exceeded the request limit. Please try again later.",
+          { toastId: "429" }
         );
-        navigate("/home");
         return;
       }
+
       toast.error("The item you tried to access does not exist.");
       navigate(`/${typeToFetch}`);
     }
