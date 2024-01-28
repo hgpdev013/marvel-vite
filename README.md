@@ -21,16 +21,16 @@ Para manter o código limpo e padronizado, foi configurado o ESLint no projeto.
 
 ```bash
 
-// Clone o repositório
+# Clone o repositório
 git clone https://github.com/hgpdev013/marvel-vite
 
-// Entre na pasta do repositório
+# Entre na pasta do projeto
 cd marvel-vite
 
-// Instale as dependências
+# Instale as dependências
 npm install
 
-// Rode o projeto
+# Rode o projeto
 npm run dev
 
 ```
