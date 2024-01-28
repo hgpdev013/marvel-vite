@@ -1,7 +1,8 @@
+import { ArrowBendDownLeft } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Layout, SubDetails, HomeLoading } from "../../components";
+import { HomeLoading, Layout, SubDetails } from "../../components";
 import { getDetails, getSubDetails } from "../../services";
 import { Results } from "../../types";
 import {
@@ -135,6 +136,9 @@ export default function DetailsPage() {
   return (
     <Layout showNavigation>
       <Styles.Container>
+        <Styles.ReturnButton onClick={() => navigate(-1)}>
+          <ArrowBendDownLeft />
+        </Styles.ReturnButton>
         {mainDataLoading ? (
           <HomeLoading />
         ) : (

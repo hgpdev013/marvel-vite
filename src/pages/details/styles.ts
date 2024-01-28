@@ -56,3 +56,22 @@ export const SubDetailsContainer = styled.div`
   flex-direction: column;
   gap: 3rem;
 `;
+
+export const ReturnButton = styled.button`
+  color: ${({ theme }) => theme.background};
+  border-radius: 20px;
+  border: none;
+  background: ${({ theme }) => theme.text};
+  cursor: pointer;
+  margin: 1rem;
+  padding: 0.5rem;
+
+  > svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+`;
