@@ -13,7 +13,7 @@ import * as Styles from "./styles";
 interface ListProps {
   data: FormattedDataProps[];
   type: PAGE_TYPES_KEY;
-  fetchData: (offset: number) => void;
+  fetchData: (offset: number, type: PAGE_TYPES_KEY) => void;
   offset: number;
 }
 
@@ -31,7 +31,7 @@ export const List = ({ data, type, fetchData, offset }: ListProps) => {
       <Sidebar />
       <InfiniteScroll
         dataLength={data.length}
-        next={() => fetchData(offset + GET_LIMIT)}
+        next={() => fetchData(offset + GET_LIMIT, type)}
         scrollThreshold={0.8}
         hasMore={data.length < data[0]?.totalData}
         loader={""}

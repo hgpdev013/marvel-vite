@@ -24,9 +24,16 @@ export const Container = styled.ul`
   }
 `;
 
-export const ListItem = styled.li<{ isReductable?: boolean }>`
+export const ListItem = styled.li<{
+  isReductable?: boolean;
+  isSelected?: boolean;
+}>`
   cursor: pointer;
   min-width: 2rem;
+  font-size: 1.2rem;
+
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.navbar.text : theme.primary};
 
   > img {
     width: 100%;
@@ -39,6 +46,12 @@ export const ListItem = styled.li<{ isReductable?: boolean }>`
   @media (max-width: 768px) {
     display: ${({ isReductable }) => (isReductable ? "none" : "flex")};
   }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  transition: all 0.3s ease-in-out;
 `;
 
 export const ListIcon = styled.button`

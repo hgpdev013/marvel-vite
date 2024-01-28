@@ -1,5 +1,5 @@
 import { List, SignOut } from "@phosphor-icons/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   PAGES_NAMES,
   PAGE_TYPES,
@@ -12,6 +12,7 @@ export const Navigation = () => {
   const navigate = useNavigate();
   const { toggleMenu } = useSidebar();
   const { handleLogout } = useAuth();
+  const { type } = useParams();
 
   return (
     <Styles.Container>
@@ -24,6 +25,7 @@ export const Navigation = () => {
       {Object.keys(PAGE_TYPES).map((key) => {
         return (
           <Styles.ListItem
+            isSelected={type !== key}
             isReductable
             key={key}
             onClick={() => navigate(`/${key}`)}

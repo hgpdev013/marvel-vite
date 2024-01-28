@@ -17,16 +17,16 @@ export default function ListsPage() {
   const [data, setData] = useState<FormattedDataProps[]>([]);
 
   const fetchDataPerType = useCallback(
-    async (offset: number) => {
+    async (offset: number, typeToFetch: PAGE_TYPES_KEY) => {
       try {
         const { data } = await getCommonData({
           limit: GET_LIMIT,
           offset: offset,
-          type: type as PAGE_TYPES_KEY,
+          type: typeToFetch as PAGE_TYPES_KEY,
         });
 
         const dataFormatted = data.results.map((value) =>
-          formatData(value, type as PAGE_TYPES_KEY, data.total)
+          formatData(value, typeToFetch as PAGE_TYPES_KEY, data.total)
         );
 
         setData((prev) => [...prev, ...dataFormatted]);
@@ -47,8 +47,9 @@ export default function ListsPage() {
   );
 
   useEffect(() => {
-    fetchDataPerType(0);
-  }, []);
+    setData([]);
+    fetchDataPerType(0, type as PAGE_TYPES_KEY);
+  }, [type]);
 
   return (
     <Layout showNavigation={false}>
