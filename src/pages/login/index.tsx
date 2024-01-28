@@ -30,7 +30,7 @@ export default function LoginPage() {
     <Layout showNavigation={false}>
       <Styles.Container>
         <Styles.Content onSubmit={handleSubmit}>
-          <img src="marvel_logo.png" alt="MARVEL LOGO" />
+          <img src="marvel_logo.png" alt="MARVEL LOGO" loading="lazy" />
           <Styles.SubContent>
             <Styles.InputGroup>
               <span>Public Key</span>

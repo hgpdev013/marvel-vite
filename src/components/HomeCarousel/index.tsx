@@ -36,6 +36,7 @@ export const HomeCarousel = ({ data, isLoading }: HomeCarouselProps) => {
                       key as PAGE_TYPES_KEY
                     ).image
                   }
+                  loading="lazy"
                 />
                 <Styles.SlideSubContent>
                   <Styles.Group>

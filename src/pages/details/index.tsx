@@ -133,7 +133,7 @@ export default function DetailsPage() {
     <Layout showNavigation>
       <Styles.Container>
         <Styles.Content>
-          <Styles.Image src={formattedData.image} />
+          <Styles.Image src={formattedData.image} loading="lazy" />
           <Styles.SubContent>
             <Styles.Title>{formattedData.name || "UNKNOWN NAME"}</Styles.Title>
             <Styles.Description>
