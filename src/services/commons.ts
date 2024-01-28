@@ -30,7 +30,9 @@ export async function getCommonData({
   signal,
 }: CommonParams & CommonDataFilters): Promise<GetResponse> {
   let toFetchOrderBy =
-    orderBy === "name" ? (ORDER_BY_FILTER[type] as OrderBy) : orderBy || "";
+    orderBy === "name"
+      ? (ORDER_BY_FILTER[type] as OrderBy)
+      : orderBy || undefined;
 
   if (isDesc) {
     if (toFetchOrderBy === "name") {

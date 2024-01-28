@@ -4,6 +4,7 @@ import { getCommonData } from "../../services";
 import { Results } from "../../types";
 import { PAGE_TYPES, PAGE_TYPES_KEY } from "../../utils/common-data";
 import * as Styles from "./styles";
+import { toast } from "react-toastify";
 
 export default function HomePage() {
   const [carouselData, setCarouselData] = useState<{
@@ -24,16 +25,27 @@ export default function HomePage() {
     async (type: PAGE_TYPES_KEY) => {
       setIsLoading((prev) => ({ ...prev, [type]: true }));
 
-      const { data } = await getCommonData({
-        limit: 1,
-        type,
-        offset: Math.floor(Math.random() * 50),
-      });
+      try {
+        const { data } = await getCommonData({
+          limit: 1,
+          type,
+          offset: Math.floor(Math.random() * 50),
+        });
 
-      setCarouselData((prevData) => ({
-        ...prevData,
-        [type]: data.results,
-      }));
+        setCarouselData((prevData) => ({
+          ...prevData,
+          [type]: data.results,
+        }));
+      } catch (error: any) {
+        if (error?.response?.status === 429) {
+          toast.error(
+            "You have exceeded the request limit. Please try again later."
+          );
+          return;
+        }
+
+        toast.error("Your credentials are invalid. Please try again.");
+      }
 
       setIsLoading((prev) => ({ ...prev, [type]: false }));
     },
