@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Layout, SubDetails } from "../../components";
+import { Layout, SubDetails, HomeLoading } from "../../components";
 import { getDetails, getSubDetails } from "../../services";
 import { Results } from "../../types";
 import {
@@ -25,6 +25,8 @@ export default function DetailsPage() {
     [key in PAGE_TYPES_KEY]: Results[];
   }>({} as { [key in PAGE_TYPES_KEY]: Results[] });
 
+  const [mainDataLoading, setMainDataLoading] = useState<boolean>(true);
+
   const [isLoading, setIsLoading] = useState<{
     [key in PAGE_TYPES_KEY]: boolean;
   }>({
@@ -36,6 +38,7 @@ export default function DetailsPage() {
   });
 
   async function fetchDataByIdAndType(typeToFetch: PAGE_TYPES_KEY, id: number) {
+    setMainDataLoading(true);
     setFetchedData({} as Results);
     setFormattedData({} as FormattedDataProps);
     setNestedLists({} as { [key in PAGE_TYPES_KEY]: Results[] });
@@ -62,6 +65,7 @@ export default function DetailsPage() {
       toast.error("The item you tried to access does not exist.");
       navigate(`/${typeToFetch}`);
     }
+    setMainDataLoading(false);
   }
 
   async function fetchSubTypeData(
@@ -114,7 +118,7 @@ export default function DetailsPage() {
       if (!fetchedData[key as PAGE_TYPES_KEY]) return;
       if (
         key === PAGE_TYPES[key as PAGE_TYPES_KEY] &&
-        fetchedData[key as PAGE_TYPES_KEY]?.items.length > 0 &&
+        fetchedData[key as PAGE_TYPES_KEY]?.items.length > 3 &&
         fetchedData[key as PAGE_TYPES_KEY]?.returned > 0
       ) {
         await fetchSubTypeData(
@@ -131,16 +135,22 @@ export default function DetailsPage() {
   return (
     <Layout showNavigation>
       <Styles.Container>
-        <Styles.Content>
-          <Styles.Image src={formattedData.image} loading="lazy" />
-          <Styles.SubContent>
-            <Styles.Title>{formattedData.name || "UNKNOWN NAME"}</Styles.Title>
-            <Styles.Description>
-              {formattedData.description || "No description available"}
-            </Styles.Description>
-            <div></div>
-          </Styles.SubContent>
-        </Styles.Content>
+        {mainDataLoading ? (
+          <HomeLoading />
+        ) : (
+          <Styles.Content>
+            <Styles.Image src={formattedData.image} loading="lazy" />
+            <Styles.SubContent>
+              <Styles.Title>
+                {formattedData.name || "UNKNOWN NAME"}
+              </Styles.Title>
+              <Styles.Description>
+                {formattedData.description || "No description available"}
+              </Styles.Description>
+              <div></div>
+            </Styles.SubContent>
+          </Styles.Content>
+        )}
         <Styles.SubDetailsContainer>
           {Object.keys(nestedLists).map((key) => {
             return (

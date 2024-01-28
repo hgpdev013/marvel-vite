@@ -37,6 +37,10 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    margin: 2rem;
+  }
 `;
 
 export const SlideContainer = styled.div`
@@ -50,6 +54,11 @@ export const SlideContent = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   justify-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 export const SlideSubContent = styled.div`
@@ -57,6 +66,10 @@ export const SlideSubContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+  }
 `;
 
 export const Image = styled.img`
@@ -96,6 +109,10 @@ export const Group = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+  }
 `;
 
 export const Button = styled.button`

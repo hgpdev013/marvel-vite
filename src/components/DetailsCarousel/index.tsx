@@ -10,11 +10,13 @@ interface DetailsCarouselProps {
 }
 
 export const DetailsCarousel = ({ data, type }: DetailsCarouselProps) => {
+  const slidesToShow = data.length >= 7 ? 7 : data.length;
+
   const settings = {
     infinite: false,
     speed: 500,
-    slidesToShow: data.length >= 7 ? 7 : data.length,
-    slidesToScroll: data.length >= 7 ? 7 : data.length,
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToShow,
     initialSlide: 0,
     swipeToSlide: true,
 

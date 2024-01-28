@@ -9,6 +9,10 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.text};
     }
   }
+
+  .slick-list > div {
+    margin-left: 0;
+  }
 `;
 
 export const CardContainer = styled.div`
