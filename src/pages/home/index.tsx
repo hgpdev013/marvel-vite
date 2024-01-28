@@ -19,7 +19,6 @@ export default function HomePage() {
     creators: true,
     events: true,
     series: true,
-    stories: true,
   });
 
   const fetchRandomData = useCallback(

@@ -8,18 +8,15 @@ export const PAGE_TYPES = {
   creators: "creators",
   events: "events",
   series: "series",
-  stories: "stories",
 } as const;
 
 export const NAME_TYPES = {
   comics: "title",
   characters: "name",
   creators: "fullName",
-  stories: "title",
   events: "title",
   series: "title",
 } as const;
-
 
 export const PAGES_NAMES = {
   comics: "Comics",
@@ -27,7 +24,14 @@ export const PAGES_NAMES = {
   creators: "Creators",
   events: "Events",
   series: "Series",
-  stories: "Stories",
+};
+
+export const ORDER_BY_FILTER = {
+  comics: "title",
+  characters: "name",
+  creators: "firstName",
+  events: "name",
+  series: "title",
 };
 
 export type PAGE_TYPES_KEY = keyof typeof PAGE_TYPES;

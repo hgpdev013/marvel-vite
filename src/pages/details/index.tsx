@@ -33,7 +33,6 @@ export default function DetailsPage() {
     creators: true,
     events: true,
     series: true,
-    stories: true,
   });
 
   async function fetchDataByIdAndType(typeToFetch: PAGE_TYPES_KEY, id: number) {
