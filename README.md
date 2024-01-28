@@ -20,15 +20,19 @@ Para manter o código limpo e padronizado, foram configurados ESLint e Prettier 
 ## ⚙️ **Como rodar o projeto**
 
 *Clone o repositório*
+
 git clone https://github.com/hgpdev013/marvel-vite
 
 *Entre na pasta do repositório*
+
 cd marvel-vite
 
 *Instale as dependências*
+
 npm install
 
 *Rode o projeto*
+
 npm run dev
 
 ## 📍 **Dicas**
