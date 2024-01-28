@@ -4,6 +4,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  > h1 {
+    padding: 0 1rem;
+  }
 `;
 
 export const Content = styled.div`

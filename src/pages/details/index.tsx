@@ -125,19 +125,28 @@ export default function DetailsPage() {
   return (
     <Layout showNavigation>
       <Styles.Container>
-        <div>
-          <button onClick={() => navigate(-1)}></button>
-          <h1>{formattedData.name}</h1>
-        </div>
-        {Object.keys(nestedLists).map((key) => {
-          return (
-            <SubDetails
-              key={key}
-              subType={key as PAGE_TYPES_KEY}
-              data={nestedLists[key as PAGE_TYPES_KEY]}
-            />
-          );
-        })}
+        <button onClick={() => navigate(-1)}></button>
+        <Styles.Content>
+          <Styles.Image src={formattedData.image} />
+          <Styles.SubContent>
+            <Styles.Title>{formattedData.name || "UNKNOWN NAME"}</Styles.Title>
+            <Styles.Description>
+              {formattedData.description || "No description available"}
+            </Styles.Description>
+            <div></div>
+          </Styles.SubContent>
+        </Styles.Content>
+        <Styles.SubDetailsContainer>
+          {Object.keys(nestedLists).map((key) => {
+            return (
+              <SubDetails
+                key={key}
+                subType={key as PAGE_TYPES_KEY}
+                data={nestedLists[key as PAGE_TYPES_KEY]}
+              />
+            );
+          })}
+        </Styles.SubDetailsContainer>
       </Styles.Container>
     </Layout>
   );

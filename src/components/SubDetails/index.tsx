@@ -1,8 +1,9 @@
 import { Card } from "..";
 import { Results } from "../../types";
 import {
+  PAGES_NAMES,
   PAGE_TYPES_KEY,
-  formatData
+  formatData,
 } from "../../utils/common-data";
 import * as Styles from "./styles";
 
@@ -16,7 +17,7 @@ export const SubDetails = ({ data, subType }: SubDetailsProps) => {
 
   return (
     <Styles.Container>
-      <h1>{subType}</h1>
+      <h1>{PAGES_NAMES[subType]}</h1>
       <Styles.Content>
         {formattedData?.map(({ name, id, description, image }) => {
           return (
