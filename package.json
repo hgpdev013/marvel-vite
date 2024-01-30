@@ -12,6 +12,7 @@
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
     "axios": "^1.6.5",
+    "dayjs": "^1.11.10",
     "js-md5": "^0.8.3",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.3",

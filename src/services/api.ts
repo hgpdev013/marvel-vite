@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios";
+import dayjs from "dayjs";
 import { md5 } from "js-md5";
 import { Cookies } from "react-cookie";
 
@@ -6,7 +7,7 @@ const BASE_URL = "https://gateway.marvel.com/v1/public";
 
 export const setupAPIClient = () => {
   const cookies = new Cookies();
-  const ts = new Date().toString();
+  const ts = dayjs().format("YYYYMMDDHHmmss");
   const publicKey = cookies.get("publicKey");
   const privateKey = cookies.get("privateKey");
 
